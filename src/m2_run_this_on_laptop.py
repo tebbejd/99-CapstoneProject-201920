@@ -11,7 +11,8 @@ import mqtt_remote_method_calls as com
 import tkinter
 from tkinter import ttk
 import shared_gui
-
+import time
+import math
 
 def main():
     """
@@ -22,7 +23,12 @@ def main():
     # -------------------------------------------------------------------------
     # Construct and connect the MQTT Client:
     # -------------------------------------------------------------------------
+    name1 = input("Enter one name (subscriber): ")
+    name2 = input("Enter another name (publisher): ")
 
+    mqtt_client = com.MqttClient()
+    mqtt_client.connect(name1, name2)
+    time.sleep(1)
 
     # -------------------------------------------------------------------------
     # The root TK object for the GUI:
