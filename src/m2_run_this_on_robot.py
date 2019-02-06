@@ -28,7 +28,7 @@ def run_test_arm():
     #time.sleep(0.1)
     robot.arm_and_claw.calibrate_arm()
     #time.sleep(0.1)
-    robot.arm_and_claw.move_arm_to_position(400)
+    robot.arm_and_claw.move_arm_to_position(2500)
     #time.sleep(0.1)
 
 
