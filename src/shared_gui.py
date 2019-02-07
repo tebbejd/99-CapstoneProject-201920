@@ -40,6 +40,9 @@ def get_teleoperation_frame(window, mqtt_sender):
     left_speed_entry.insert(0, "100")
     right_speed_entry = ttk.Entry(frame, width=8, justify=tkinter.RIGHT)
     right_speed_entry.insert(0, "100")
+    right_speed_entry_box = right_speed_entry.get()
+    left_speed_entry_box = left_speed_entry.get()
+
 
     forward_button = ttk.Button(frame, text="Forward")
     backward_button = ttk.Button(frame, text="Backward")
@@ -62,13 +65,13 @@ def get_teleoperation_frame(window, mqtt_sender):
 
     # Set the button callbacks:
     forward_button["command"] = lambda: handle_forward(
-        left_speed_entry, right_speed_entry, mqtt_sender)
+        left_speed_entry_box, right_speed_entry_box, mqtt_sender)
     backward_button["command"] = lambda: handle_backward(
-        left_speed_entry, right_speed_entry, mqtt_sender)
+        left_speed_entry_box, right_speed_entry_box, mqtt_sender)
     left_button["command"] = lambda: handle_left(
-        left_speed_entry, right_speed_entry, mqtt_sender)
+        left_speed_entry_box, right_speed_entry_box, mqtt_sender)
     right_button["command"] = lambda: handle_right(
-        left_speed_entry, right_speed_entry, mqtt_sender)
+        left_speed_entry_box, right_speed_entry_box, mqtt_sender)
     stop_button["command"] = lambda: handle_stop(mqtt_sender)
 
     return frame
@@ -250,7 +253,7 @@ def handle_move_arm_to_position(arm_position_entry, mqtt_sender):
       :type  arm_position_entry  ttk.Entry
       :type  mqtt_sender:        com.MqttClient
     """
-    print('move arm to position')
+    print('move arm to position',arm_position_entry)
     mqtt_sender.send_message('arm_to_position',[''.format(arm_position_entry)])
 
 
