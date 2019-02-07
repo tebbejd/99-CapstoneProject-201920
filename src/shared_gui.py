@@ -277,3 +277,83 @@ def handle_exit(mqtt_sender):
     """
     mqtt_sender.send_message('quit')
     exit()
+
+def get_seconds_frame(window,sender):
+    frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
+    frame.grid()
+
+    # Construct the widgets on the frame:
+    drive_for_seconds = ttk.Button(frame, text="Drive for Seconds")
+    # Grid the widgets:
+    speed_label = ttk.Label(frame, text="Speed (0 to 100)")
+    speed_label.grid(row=0,column=0)
+
+
+    speed_entry = ttk.Entry(frame, width=8)
+    speed_entry.insert(0, "100")
+    speed_entry.grid(row=1, column = 0)
+    speed = speed_entry.get()
+
+    drive_for_seconds.grid(row=2, column=1)
+    seconds_entry = ttk.Entry(frame, width=8, justify=tkinter.RIGHT)
+    seconds_entry.grid(row=2, column = 0)
+    box = seconds_entry.get()
+    drive_for_seconds["command"] = lambda: go_for_seconds(box,sender,speed)
+    return frame
+
+
+def get_inches_time_frame(window, sender):
+    frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
+    frame.grid()
+
+    # Construct the widgets on the frame:
+    drive_for_inches = ttk.Button(frame, text="Drive for Inches")
+
+    speed_label = ttk.Label(frame, text="Speed (0 to 100)")
+    speed_label.grid(row=0,column=0)
+
+    speed_entry = ttk.Entry(frame, width=8)
+    speed_entry.insert(0, "100")
+    speed_entry.grid(row=1, column=0)
+    speed = speed_entry.get()
+
+    drive_for_inches.grid(row=2, column=1)
+    inches_entry = ttk.Entry(frame, width=8, justify=tkinter.RIGHT)
+    inches_entry.grid(row=2, column=0)
+    box = inches_entry.get()
+    drive_for_inches["command"] = lambda: go_for_inches_time(box, sender,speed)
+    return frame
+
+def get_inches_encoder_frame(window, sender):
+    frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
+    frame.grid()
+
+    # Construct the widgets on the frame:
+    drive_for_inches = ttk.Button(frame, text="Drive for Inches")
+
+    speed_label = ttk.Label(frame, text="Speed (0 to 100)")
+    speed_label.grid(row=0,column=0)
+
+
+    speed_entry = ttk.Entry(frame, width=8)
+    speed_entry.insert(0, "100")
+    speed_entry.grid(row=1, column=0)
+    speed = speed_entry.get()
+
+    drive_for_inches.grid(row=2, column=1)
+    inches_entry = ttk.Entry(frame, width=8, justify=tkinter.RIGHT)
+    inches_entry.grid(row=2, column=0)
+    box = inches_entry.get()
+    drive_for_inches["command"] = lambda: go_for_inches_encoder(box, sender,speed)
+    return frame
+
+
+
+def go_for_seconds(box,sender,speed):
+    sender.send_message('go_straight_for_seconds',[box,speed])
+
+def go_for_inches_time(box,sender,speed):
+    sender.send_message('go_straight_for_inches_using_time',[box,speed])
+
+def go_for_inches_encoder(box,sender,speed):
+    sender.send_message('go_straight_for_inches_using_encoder',[box,speed])

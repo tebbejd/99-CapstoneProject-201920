@@ -46,7 +46,12 @@ def main():
     # Frames that are particular to my individual contributions to the project.
     # -------------------------------------------------------------------------
     # TODO: Implement and call get_my_frames(...)
-
+    go_straight_for_seconds = shared_gui.get_seconds_frame(frame,sender)
+    go_straight_for_inches_timed = shared_gui.get_inches_time_frame(frame,sender)
+    go_straight_for_inches_encoder = shared_gui.get_inches_encoder_frame(frame,sender)
+    go_straight_for_seconds.grid(row = 0, column = 1)
+    go_straight_for_inches_timed.grid(row = 1, column = 1)
+    go_straight_for_inches_encoder.grid(row = 2,column = 1)
     # -------------------------------------------------------------------------
     # Grid the frames.
     # -------------------------------------------------------------------------
