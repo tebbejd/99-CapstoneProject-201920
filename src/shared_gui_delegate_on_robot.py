@@ -49,4 +49,14 @@ class DelegateThatReceives(object):
         self.robot.arm_and_claw.move_arm_to_position(int(pos))
         print('arm position')
 
-    def go_strait_for_seconds
+    def go_straight_for_seconds(self, time, left_wheel):
+        self.robot.drive_system.go_straight_for_seconds(time, left_wheel)
+        print('strait for seconds')
+
+    def go_straight_for_inches_using_time(self, inches, left_wheel):
+        self.robot.drive_system.go_straight_for_inches_using_time(inches, left_wheel)
+        print('strait for inches using time')
+
+    def go_straight_for_inches_using_encoder(self, inches, left_wheel):
+        self.robot.drive_system.go_straight_for_inches_using_encoder(inches, left_wheel)
+        print('strait for inches using distance')
