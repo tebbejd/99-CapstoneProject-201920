@@ -33,8 +33,8 @@ def run_test_arm():
 
 def real_thing():
     robot = rosebot.RoseBot()
-    delagate_That_Receives = shared_gui_delegate_on_robot.DelagateThatReceives(robot)
-    mqtt_reciever = com.MqttClient(delagate_That_Receives)
+    delagate_that_receives = shared_gui_delegate_on_robot.DelegateThatReceives(robot)
+    mqtt_reciever = com.MqttClient(delagate_that_receives)
     mqtt_reciever.connect_to_pc()
 
     while True:
