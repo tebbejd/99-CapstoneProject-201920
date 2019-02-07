@@ -49,3 +49,4 @@ class DelegateThatReceives(object):
         self.robot.arm_and_claw.move_arm_to_position(int(pos))
         print('arm position')
 
+    def go_strait_for_seconds
