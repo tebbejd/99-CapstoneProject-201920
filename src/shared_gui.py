@@ -165,7 +165,7 @@ def handle_forward(left_entry_box, right_entry_box, mqtt_sender):
       :type  mqtt_sender:      com.MqttClient
     """
     print('forward',left_entry_box,right_entry_box)
-    mqtt_sender.send_message('forward',[left_entry_box,right_entry_box])
+    mqtt_sender.send_message('forward',[left_entry_box , right_entry_box])
 
 def handle_backward(left_entry_box, right_entry_box, mqtt_sender):
     """
@@ -176,7 +176,7 @@ def handle_backward(left_entry_box, right_entry_box, mqtt_sender):
       :type  mqtt_sender:      com.MqttClient
     """
     print('backward', left_entry_box, right_entry_box)
-    mqtt_sender.send_message('backward',[left_entry_box,right_entry_box])
+    mqtt_sender.send_message('backward',[left_entry_box , right_entry_box])
 
 
 def handle_left(left_entry_box, right_entry_box, mqtt_sender):
@@ -188,7 +188,7 @@ def handle_left(left_entry_box, right_entry_box, mqtt_sender):
       :type  mqtt_sender:      com.MqttClient
     """
     print('left', left_entry_box, right_entry_box)
-    mqtt_sender.send_message('left',[left_entry_box,right_entry_box])
+    mqtt_sender.send_message('left',[left_entry_box , right_entry_box])
 
 
 def handle_right(left_entry_box, right_entry_box, mqtt_sender):
@@ -200,7 +200,7 @@ def handle_right(left_entry_box, right_entry_box, mqtt_sender):
       :type  mqtt_sender:      com.MqttClient
     """
     print('right', left_entry_box, right_entry_box)
-    mqtt_sender.send_message('right',[left_entry_box,right_entry_box])
+    mqtt_sender.send_message('right',[left_entry_box , right_entry_box])
 
 
 def handle_stop(mqtt_sender):
@@ -251,7 +251,7 @@ def handle_move_arm_to_position(arm_position_entry, mqtt_sender):
       :type  mqtt_sender:        com.MqttClient
     """
     print('move arm to position')
-    mqtt_sender.send_message('arm_to_position',arm_position_entry)
+    mqtt_sender.send_message('arm_to_position',[arm_position_entry])
 
 
 ###############################################################################
