@@ -46,6 +46,6 @@ class DelegateThatReceives(object):
         print('calibrate')
 
     def arm_to_position(self, pos):
-        self.robot.arm_and_claw.move_arm_to_position(pos)
+        self.robot.arm_and_claw.move_arm_to_position(int(pos))
         print('arm position')
 
