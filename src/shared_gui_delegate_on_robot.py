@@ -34,18 +34,18 @@ class DelegateThatReceives(object):
         print('STOP!!!')
 
     def raise_arm(self):
-        self.robot.ArmAndClaw.raise_arm()
+        self.robot.arm_and_claw.raise_arm()
         print('raise arm')
 
     def lower_arm(self):
-        self.robot.ArmAndClaw.lower_arm()
+        self.robot.arm_and_claw.lower_arm()
         print('lower arm')
 
     def calibrate_arm(self):
-        self.robot.ArmAndClaw.calibrate_arm()
+        self.robot.arm_and_claw.calibrate_arm()
         print('calibrate')
 
     def arm_to_position(self, pos):
-        self.robot.ArmAndClaw.move_arm_to_position(pos)
+        self.robot.arm_and_claw.move_arm_to_position(pos)
         print('arm position')
 
