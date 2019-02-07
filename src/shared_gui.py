@@ -168,7 +168,7 @@ def handle_forward(left_entry_box, right_entry_box, mqtt_sender):
       :type  mqtt_sender:      com.MqttClient
     """
     print('forward',left_entry_box,right_entry_box)
-    mqtt_sender.send_message('forward',[''.format(left_entry_box) , ''.format(right_entry_box)])
+    mqtt_sender.send_message('forward',[left_entry_box , right_entry_box])
 
 def handle_backward(left_entry_box, right_entry_box, mqtt_sender):
     """
@@ -179,7 +179,7 @@ def handle_backward(left_entry_box, right_entry_box, mqtt_sender):
       :type  mqtt_sender:      com.MqttClient
     """
     print('backward', left_entry_box, right_entry_box)
-    mqtt_sender.send_message('backward',[''.format(left_entry_box) , ''.format(right_entry_box)])
+    mqtt_sender.send_message('backward',[left_entry_box , right_entry_box])
 
 
 def handle_left(left_entry_box, right_entry_box, mqtt_sender):
@@ -191,7 +191,7 @@ def handle_left(left_entry_box, right_entry_box, mqtt_sender):
       :type  mqtt_sender:      com.MqttClient
     """
     print('left', left_entry_box, right_entry_box)
-    mqtt_sender.send_message('left',[''.format(left_entry_box) , ''.format(right_entry_box)])
+    mqtt_sender.send_message('left',[left_entry_box , right_entry_box])
 
 
 def handle_right(left_entry_box, right_entry_box, mqtt_sender):
@@ -203,7 +203,7 @@ def handle_right(left_entry_box, right_entry_box, mqtt_sender):
       :type  mqtt_sender:      com.MqttClient
     """
     print('right', left_entry_box, right_entry_box)
-    mqtt_sender.send_message('right',[''.format(left_entry_box) , ''.format(right_entry_box)])
+    mqtt_sender.send_message('right',[left_entry_box , right_entry_box])
 
 
 def handle_stop(mqtt_sender):
@@ -253,8 +253,9 @@ def handle_move_arm_to_position(arm_position_entry, mqtt_sender):
       :type  arm_position_entry  ttk.Entry
       :type  mqtt_sender:        com.MqttClient
     """
+    arm_position_entry = arm_position_entry.get()
     print('move arm to position',arm_position_entry)
-    mqtt_sender.send_message('arm_to_position',[''.format(arm_position_entry)])
+    mqtt_sender.send_message('arm_to_position',[arm_position_entry])
 
 
 ###############################################################################
