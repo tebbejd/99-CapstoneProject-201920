@@ -40,8 +40,7 @@ def get_teleoperation_frame(window, mqtt_sender):
     left_speed_entry.insert(0, "100")
     right_speed_entry = ttk.Entry(frame, width=8, justify=tkinter.RIGHT)
     right_speed_entry.insert(0, "100")
-    right_speed_entry_box = right_speed_entry.get()
-    left_speed_entry_box = left_speed_entry.get()
+
 
 
     forward_button = ttk.Button(frame, text="Forward")
@@ -65,13 +64,13 @@ def get_teleoperation_frame(window, mqtt_sender):
 
     # Set the button callbacks:
     forward_button["command"] = lambda: handle_forward(
-        left_speed_entry_box, right_speed_entry_box, mqtt_sender)
+        left_speed_entry, right_speed_entry, mqtt_sender)
     backward_button["command"] = lambda: handle_backward(
-        left_speed_entry_box, right_speed_entry_box, mqtt_sender)
+        left_speed_entry, right_speed_entry, mqtt_sender)
     left_button["command"] = lambda: handle_left(
-        left_speed_entry_box, right_speed_entry_box, mqtt_sender)
+        left_speed_entry, right_speed_entry, mqtt_sender)
     right_button["command"] = lambda: handle_right(
-        left_speed_entry_box, right_speed_entry_box, mqtt_sender)
+        left_speed_entry, right_speed_entry, mqtt_sender)
     stop_button["command"] = lambda: handle_stop(mqtt_sender)
 
     return frame
@@ -167,6 +166,8 @@ def handle_forward(left_entry_box, right_entry_box, mqtt_sender):
       :type  right_entry_box:  ttk.Entry
       :type  mqtt_sender:      com.MqttClient
     """
+    left_entry_box = left_entry_box.get()
+    right_entry_box = right_entry_box.get()
     print('forward',left_entry_box,right_entry_box)
     mqtt_sender.send_message('forward',[left_entry_box , right_entry_box])
 
@@ -178,6 +179,8 @@ def handle_backward(left_entry_box, right_entry_box, mqtt_sender):
       :type  right_entry_box:  ttk.Entry
       :type  mqtt_sender:      com.MqttClient
     """
+    left_entry_box = left_entry_box.get()
+    right_entry_box = right_entry_box.get()
     print('backward', left_entry_box, right_entry_box)
     mqtt_sender.send_message('backward',[left_entry_box , right_entry_box])
 
@@ -190,6 +193,8 @@ def handle_left(left_entry_box, right_entry_box, mqtt_sender):
       :type  right_entry_box:  ttk.Entry
       :type  mqtt_sender:      com.MqttClient
     """
+    left_entry_box = left_entry_box.get()
+    right_entry_box = right_entry_box.get()
     print('left', left_entry_box, right_entry_box)
     mqtt_sender.send_message('left',[left_entry_box , right_entry_box])
 
@@ -202,6 +207,8 @@ def handle_right(left_entry_box, right_entry_box, mqtt_sender):
       :type  right_entry_box:  ttk.Entry
       :type  mqtt_sender:      com.MqttClient
     """
+    left_entry_box = left_entry_box.get()
+    right_entry_box = right_entry_box.get()
     print('right', left_entry_box, right_entry_box)
     mqtt_sender.send_message('right',[left_entry_box , right_entry_box])
 
@@ -266,7 +273,10 @@ def handle_quit(mqtt_sender):
     Tell the robot's program to stop its loop (and hence quit).
       :type  mqtt_sender:  com.MqttClient
     """
+    print('End code for robot')
     mqtt_sender.send_message('quit')
+    print('Robot code has been terminated')
+
 
 
 def handle_exit(mqtt_sender):
@@ -275,7 +285,10 @@ def handle_exit(mqtt_sender):
     Then exit this program.
       :type mqtt_sender: com.MqttClient
     """
+    print('End code for robot')
     mqtt_sender.send_message('quit')
+    print('Robot code has been terminated')
+    print('Now exit the remote control')
     exit()
 
 def get_seconds_frame(window,sender):
@@ -288,17 +301,16 @@ def get_seconds_frame(window,sender):
     speed_label = ttk.Label(frame, text="Speed (0 to 100)")
     speed_label.grid(row=0,column=0)
 
+    seconds_label = ttk.Label(frame, text="Seconds")
+    seconds_label.grid(row=0, column=1)
 
     speed_entry = ttk.Entry(frame, width=8)
-    speed_entry.insert(0, "100")
     speed_entry.grid(row=1, column = 0)
-    speed = speed_entry.get()
 
     drive_for_seconds.grid(row=2, column=1)
     seconds_entry = ttk.Entry(frame, width=8, justify=tkinter.RIGHT)
-    seconds_entry.grid(row=2, column = 0)
-    box = seconds_entry.get()
-    drive_for_seconds["command"] = lambda: go_for_seconds(box,sender,speed)
+    seconds_entry.grid(row=1, column = 1)
+    drive_for_seconds["command"] = lambda: go_for_seconds(seconds_entry,sender,speed_entry)
     return frame
 
 
@@ -312,16 +324,16 @@ def get_inches_time_frame(window, sender):
     speed_label = ttk.Label(frame, text="Speed (0 to 100)")
     speed_label.grid(row=0,column=0)
 
+    inches_label = ttk.Label(frame, text="Inches")
+    inches_label.grid(row=0, column=1)
+
     speed_entry = ttk.Entry(frame, width=8)
-    speed_entry.insert(0, "100")
     speed_entry.grid(row=1, column=0)
-    speed = speed_entry.get()
 
     drive_for_inches.grid(row=2, column=1)
     inches_entry = ttk.Entry(frame, width=8, justify=tkinter.RIGHT)
-    inches_entry.grid(row=2, column=0)
-    box = inches_entry.get()
-    drive_for_inches["command"] = lambda: go_for_inches_time(box, sender,speed)
+    inches_entry.grid(row=1, column=1)
+    drive_for_inches["command"] = lambda: go_for_inches_time(inches_entry, sender,speed_entry)
     return frame
 
 def get_inches_encoder_frame(window, sender):
@@ -334,26 +346,35 @@ def get_inches_encoder_frame(window, sender):
     speed_label = ttk.Label(frame, text="Speed (0 to 100)")
     speed_label.grid(row=0,column=0)
 
+    inches_label = ttk.Label(frame, text="Inches")
+    inches_label.grid(row=0, column=1)
 
     speed_entry = ttk.Entry(frame, width=8)
-    speed_entry.insert(0, "100")
     speed_entry.grid(row=1, column=0)
-    speed = speed_entry.get()
+
 
     drive_for_inches.grid(row=2, column=1)
     inches_entry = ttk.Entry(frame, width=8, justify=tkinter.RIGHT)
-    inches_entry.grid(row=2, column=0)
-    box = inches_entry.get()
-    drive_for_inches["command"] = lambda: go_for_inches_encoder(box, sender,speed)
+    inches_entry.grid(row=1, column=1)
+    drive_for_inches["command"] = lambda: go_for_inches_encoder(inches_entry, sender, speed_entry)
     return frame
 
 
 
 def go_for_seconds(box,sender,speed):
+    box = box.get()
+    speed = speed.get()
+    print('go straight for', box, 'seconds ' , 'at speed',speed)
     sender.send_message('go_straight_for_seconds',[box,speed])
 
 def go_for_inches_time(box,sender,speed):
+    box = box.get()
+    speed = speed.get()
+    print('go straight for', box, 'inches ' , 'at speed',speed)
     sender.send_message('go_straight_for_inches_using_time',[box,speed])
 
 def go_for_inches_encoder(box,sender,speed):
+    box = box.get()
+    speed = speed.get()
+    print('go straight for', box, 'inches' , 'at speed',speed)
     sender.send_message('go_straight_for_inches_using_encoder',[box,speed])

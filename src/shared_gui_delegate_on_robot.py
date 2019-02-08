@@ -60,3 +60,7 @@ class DelegateThatReceives(object):
     def go_straight_for_inches_using_encoder(self, inches, left_wheel):
         self.robot.drive_system.go_straight_for_inches_using_encoder(inches, left_wheel)
         print('strait for inches using distance')
+
+    def quit(self):
+        exit()
+        return False
