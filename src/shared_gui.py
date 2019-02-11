@@ -16,7 +16,6 @@
 
 import tkinter
 from tkinter import ttk
-import time
 
 
 def get_teleoperation_frame(window, mqtt_sender):
