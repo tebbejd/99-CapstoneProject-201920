@@ -378,3 +378,82 @@ def go_for_inches_encoder(box,sender,speed):
     speed = speed.get()
     print('go straight for', box, 'inches' , 'at speed',speed)
     sender.send_message('go_straight_for_inches_using_encoder',[box,speed])
+
+def get_beep_frame(window, sender):
+    frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
+    frame.grid()
+
+    # Construct the widgets on the frame:
+    beep = ttk.Button(frame, text="Beep")
+
+    number_of_beeps_label = ttk.Label(frame, text="Number of Beeps")
+    number_of_beeps_label.grid(row=0,column=0)
+
+
+    number_of_beeps = ttk.Entry(frame, width=8)
+    number_of_beeps.grid(row=1, column=0)
+
+
+    beep.grid(row=2, column=0)
+    beep["command"] = lambda: beep_for_number(sender, number_of_beeps)
+    return frame
+
+
+def get_tone_frame(window, sender):
+    frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
+    frame.grid()
+
+    # Construct the widgets on the frame:
+    tone_button = ttk.Button(frame, text="Play Tone")
+
+    frequency_label = ttk.Label(frame, text="Frequency")
+    frequency_label.grid(row=0,column=1)
+
+    duration_label = ttk.Label(frame, text="Duration(milliseconds)")
+    duration_label.grid(row=0, column=0)
+
+    tone_entry = ttk.Entry(frame, width=8)
+    tone_entry.grid(row=1, column=1)
+
+
+    tone_button.grid(row=2, column=1)
+    duration_entry = ttk.Entry(frame, width=8, justify=tkinter.RIGHT)
+    duration_entry.grid(row=1, column=0)
+    tone_button["command"] = lambda: tone_at_given_frequency(tone_entry, sender, duration_entry)
+    return frame
+
+def get_phrase_frame(window, sender):
+    frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
+    frame.grid()
+
+    # Construct the widgets on the frame:
+    speak = ttk.Button(frame, text="Say Phrase")
+
+    phrase_label = ttk.Label(frame, text="Phrase")
+    phrase_label.grid(row=0,column=0)
+
+
+    phrase = ttk.Entry(frame, width=8)
+    phrase.grid(row=1, column=0)
+
+
+    speak.grid(row=2, column=0)
+    speak["command"] = lambda: speak_phrase(sender, phrase)
+    return frame
+
+
+def beep_for_number(sender,number):
+    number = number.get()
+    print('beep', number, 'times')
+    sender.send_message('beep_for_given_number', [number])
+
+def tone_at_given_frequency(tone,sender,duration):
+    tone = tone.get()
+    duration = duration.get()
+    print('frequency is', tone, 'Plays for',duration,'milliseconds')
+    sender.send_message('tone_at_a_given_frequency', [tone,duration])
+
+def speak_phrase(sender,phrase):
+    phrase = phrase.get()
+    print('speak', phrase)
+    sender.send_message('speak_phrase', [phrase])
