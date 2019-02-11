@@ -117,10 +117,10 @@ class DriveSystem(object):
         val = 0
         while True:
             current = abs(self.left_motor.get_position())
-            val = val + current
-            if val >= desire:
+            #val = val + current
+            if current >= desire:
                 break
-            self.left_motor.reset_position()
+            #self.left_motor.reset_position()
         self.stop()
 
     # -------------------------------------------------------------------------
