@@ -460,3 +460,73 @@ def speak_phrase(sender, phrase):
     phrase = phrase.get()
     print('speak', phrase)
     sender.send_message('speak_phrase', [phrase])
+
+def get_IR_frame(window, sender):
+    frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
+    frame.grid()
+    frame_label = ttk.Label(frame, text="Go using IR sensor")
+    frame_label.grid()
+
+    go_for_distance = ttk.Button(frame, text="Go forward until distance")
+
+    forward_label = ttk.Label(frame, text="How Close to object (inches)")
+    forward_label.grid(row=0, column=0)
+
+    close_to = ttk.Entry(frame, width=8)
+    close_to.grid(row=1, column=0)
+    speed_entry = ttk.Entry(frame, width=8)
+    speed_entry.grid(row=2, column=0)
+
+    go_for_distance.grid(row=3, column=0)
+    go_for_distance["command"] = lambda: go_forward_less_than(sender, close_to, speed_entry)
+
+    go_for_distance_backward = ttk.Button(frame, text="Go backward until distance")
+
+    forward_label = ttk.Label(frame, text="How far from object (inches)")
+    forward_label.grid(row=0, column=1)
+
+    far_to = ttk.Entry(frame, width=8)
+    far_to.grid(row=1, column=1)
+
+    speed_entry = ttk.Entry(frame, width=8)
+    speed_entry.grid(row=2, column=1)
+
+    go_for_distance.grid(row=3, column=1)
+    go_for_distance["command"] = lambda: go_backward_greater_than(sender, far_to, speed_entry)
+
+    go_for_distance_between = ttk.Button(frame, text="Go until between")
+
+    forward_label = ttk.Label(frame, text="Distance from object (inches)")
+    forward_label.grid(row=0, column=2)
+
+    close_to = ttk.Entry(frame, width=8)
+    close_to.grid(row=1, column=2)
+
+    speed_entry = ttk.Entry(frame, width=8)
+    speed_entry.grid(row=2, column=2)
+
+    delta = ttk.Entry(frame, width=8)
+    delta.grid(row=3, column=2)
+
+    go_for_distance.grid(row=2, column=2)
+    go_for_distance["command"] = lambda: go_between(sender, close_to, delta, speed_entry)
+    return frame
+
+def go_forward_less_than(sender, inches, speed):
+    inches = inches.get()
+    speed = speed.get()
+    print(inches, "Away from object")
+    sender.send_message('go_forward_until_distance_is_less_than', [inches, speed])
+
+def go_backward_greater_than(sender, inches, speed):
+    inches = inches.get()
+    speed = speed.get()
+    print(inches, "Away from object")
+    sender.send_message('go_backward_until_distance_is_greater_than', [inches, speed])
+
+def go_between(sender, inches, delta, speed):
+    inches = inches.get()
+    speed = speed.get()
+    delta = delta.get()
+    print(inches, "Away from object (between)")
+    sender.send_message('go_until_distance_is_within', [inches, delta, speed])

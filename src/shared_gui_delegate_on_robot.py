@@ -79,3 +79,15 @@ class DelegateThatReceives(object):
 
     def quit(self):
         self.is_time_to_stop = True
+
+    def go_forward_until_distance_is_less_than(self, close_to, speed):
+        print("Go forward until", close_to, "inches away from object")
+        self.robot.drive_system.go_forward_until_distance_is_less_than(int(close_to), int(speed))
+
+    def go_backward_until_distance_is_greater_than(self, inches, speed):
+        print("Go backwards until", inches, "inches away from object")
+        self.robot.drive_system.go_backward_until_distance_is_greater_than(int(inches), int(speed))
+
+    def go_until_distance_is_within(self, inches, delta, speed):
+        print("Go until", inches, "inches from object")
+        self.robot.drive_system.go_until_distance_is_between(int(delta), int(inches), int(speed))
