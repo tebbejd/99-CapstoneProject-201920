@@ -491,8 +491,8 @@ def get_IR_frame(window, sender):
     speed_entry = ttk.Entry(frame, width=8)
     speed_entry.grid(row=2, column=1)
 
-    go_for_distance.grid(row=3, column=1)
-    go_for_distance["command"] = lambda: go_backward_greater_than(sender, far_to, speed_entry)
+    go_for_distance_backward.grid(row=3, column=1)
+    go_for_distance_backward["command"] = lambda: go_backward_greater_than(sender, far_to, speed_entry)
 
     go_for_distance_between = ttk.Button(frame, text="Go until between")
 
@@ -508,8 +508,8 @@ def get_IR_frame(window, sender):
     delta = ttk.Entry(frame, width=8)
     delta.grid(row=3, column=2)
 
-    go_for_distance.grid(row=2, column=2)
-    go_for_distance["command"] = lambda: go_between(sender, close_to, delta, speed_entry)
+    go_for_distance_between.grid(row=2, column=2)
+    go_for_distance_between["command"] = lambda: go_between(sender, close_to, delta, speed_entry)
     return frame
 
 def go_forward_less_than(sender, inches, speed):
