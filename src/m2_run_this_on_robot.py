@@ -39,6 +39,8 @@ def real_thing():
 
     while True:
         time.sleep(0.01)
+        if delagate_that_receives.is_time_to_stop is True:
+            break
 
 
 # -----------------------------------------------------------------------------
