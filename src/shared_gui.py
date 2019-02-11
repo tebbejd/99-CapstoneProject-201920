@@ -471,44 +471,53 @@ def get_IR_frame(window, sender):
 
     forward_label = ttk.Label(frame, text="How Close to object (inches)")
     forward_label.grid(row=0, column=0)
-
+    forward_label1 = ttk.Label(frame, text="Inches")
+    forward_label1.grid(row=1, column=0)
     close_to = ttk.Entry(frame, width=8)
-    close_to.grid(row=1, column=0)
+    close_to.grid(row=2, column=0)
+    forward_label2 = ttk.Label(frame, text="Speed")
+    forward_label2.grid(row=3, column=0)
     speed_entry = ttk.Entry(frame, width=8)
-    speed_entry.grid(row=2, column=0)
+    speed_entry.grid(row=4, column=0)
 
-    go_for_distance.grid(row=3, column=0)
+    go_for_distance.grid(row=5, column=0)
     go_for_distance["command"] = lambda: go_forward_less_than(sender, close_to, speed_entry)
 
     go_for_distance_backward = ttk.Button(frame, text="Go backward until distance")
 
     forward_label = ttk.Label(frame, text="How far from object (inches)")
     forward_label.grid(row=0, column=1)
-
+    forward_label3 = ttk.Label(frame, "Inches")
+    forward_label3.grid(row=1, column=1)
+    forward_label4 = ttk.Label(frame, text="Speed")
+    forward_label4.grid(row=2, column=1)
     far_to = ttk.Entry(frame, width=8)
-    far_to.grid(row=1, column=1)
+    far_to.grid(row=3, column=1)
 
     speed_entry = ttk.Entry(frame, width=8)
-    speed_entry.grid(row=2, column=1)
+    speed_entry.grid(row=4, column=1)
 
-    go_for_distance_backward.grid(row=3, column=1)
+    go_for_distance_backward.grid(row=5, column=1)
     go_for_distance_backward["command"] = lambda: go_backward_greater_than(sender, far_to, speed_entry)
 
     go_for_distance_between = ttk.Button(frame, text="Go until between")
 
-    forward_label = ttk.Label(frame, text="Distance from object (inches)")
-    forward_label.grid(row=0, column=2)
-
+    forward_label = ttk.Label(frame, text="How Close to object (inches)")
+    forward_label.grid(row=0, column=0)
+    forward_label5 = ttk.Label(frame, text="Inches")
+    forward_label5.grid(row=1, column=2)
     close_to = ttk.Entry(frame, width=8)
-    close_to.grid(row=1, column=2)
-
+    close_to.grid(row=2, column=2)
+    forward_label6 = ttk.Label(frame, text="Speed")
+    forward_label6.grid(row=3, column=2)
     speed_entry = ttk.Entry(frame, width=8)
-    speed_entry.grid(row=2, column=2)
-
+    speed_entry.grid(row=4, column=2)
+    forward_label7 = ttk.Label(frame, text="Delta")
+    forward_label7.grid(row=5, column=2)
     delta = ttk.Entry(frame, width=8)
-    delta.grid(row=3, column=2)
+    delta.grid(row=6, column=2)
 
-    go_for_distance_between.grid(row=2, column=2)
+    go_for_distance_between.grid(row=7, column=2)
     go_for_distance_between["command"] = lambda: go_between(sender, close_to, delta, speed_entry)
     return frame
 
