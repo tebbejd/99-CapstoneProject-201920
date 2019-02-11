@@ -487,7 +487,7 @@ def get_IR_frame(window, sender):
 
     forward_label = ttk.Label(frame, text="How far from object (inches)")
     forward_label.grid(row=0, column=1)
-    forward_label3 = ttk.Label(frame, "Inches")
+    forward_label3 = ttk.Label(frame, text ="Inches")
     forward_label3.grid(row=1, column=1)
     forward_label4 = ttk.Label(frame, text="Speed")
     forward_label4.grid(row=2, column=1)
@@ -539,3 +539,30 @@ def go_between(sender, inches, delta, speed):
     delta = delta.get()
     print(inches, "Away from object (between)")
     sender.send_message('go_until_distance_is_within', [inches, delta, speed])
+
+def get_color_sensor_frame(window,sender):
+    frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
+    frame.grid()
+
+    # Construct the widgets on the frame:
+    frame_label = ttk.Label(frame, text="Color Sensor Operation")
+    speed_label = ttk.Label(frame, text="Speed")
+
+    speed_entry = ttk.Entry(frame, width=8)
+
+
+
+    forward_button = ttk.Button(frame, text="Forward")
+    backward_button = ttk.Button(frame, text="Backward")
+
+
+    # Grid the widgets:
+    frame_label.grid(row=0, column=1)
+    speed_label.grid(row=1, column=0)
+    speed_entry.grid(row=2, column=0)
+
+    forward_button.grid(row=3, column=0)
+    backward_button.grid(row=3, column=1)
+
+
+    return frame
