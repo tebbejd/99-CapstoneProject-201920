@@ -41,8 +41,6 @@ def get_teleoperation_frame(window, mqtt_sender):
     right_speed_entry = ttk.Entry(frame, width=8, justify=tkinter.RIGHT)
     right_speed_entry.insert(0, "100")
 
-
-
     forward_button = ttk.Button(frame, text="Forward")
     backward_button = ttk.Button(frame, text="Backward")
     left_button = ttk.Button(frame, text="Left")
@@ -148,6 +146,7 @@ def get_control_frame(window, mqtt_sender):
 
     return frame
 
+
 ###############################################################################
 ###############################################################################
 # The following specifies, for each Button,
@@ -168,8 +167,9 @@ def handle_forward(left_entry_box, right_entry_box, mqtt_sender):
     """
     left_entry_box = left_entry_box.get()
     right_entry_box = right_entry_box.get()
-    print('forward',left_entry_box,right_entry_box)
-    mqtt_sender.send_message('forward',[left_entry_box , right_entry_box])
+    print('forward', left_entry_box, right_entry_box)
+    mqtt_sender.send_message('forward', [left_entry_box, right_entry_box])
+
 
 def handle_backward(left_entry_box, right_entry_box, mqtt_sender):
     """
@@ -182,7 +182,7 @@ def handle_backward(left_entry_box, right_entry_box, mqtt_sender):
     left_entry_box = left_entry_box.get()
     right_entry_box = right_entry_box.get()
     print('backward', left_entry_box, right_entry_box)
-    mqtt_sender.send_message('backward',[left_entry_box , right_entry_box])
+    mqtt_sender.send_message('backward', [left_entry_box, right_entry_box])
 
 
 def handle_left(left_entry_box, right_entry_box, mqtt_sender):
@@ -196,7 +196,7 @@ def handle_left(left_entry_box, right_entry_box, mqtt_sender):
     left_entry_box = left_entry_box.get()
     right_entry_box = right_entry_box.get()
     print('left', left_entry_box, right_entry_box)
-    mqtt_sender.send_message('left',[left_entry_box , right_entry_box])
+    mqtt_sender.send_message('left', [left_entry_box, right_entry_box])
 
 
 def handle_right(left_entry_box, right_entry_box, mqtt_sender):
@@ -210,7 +210,7 @@ def handle_right(left_entry_box, right_entry_box, mqtt_sender):
     left_entry_box = left_entry_box.get()
     right_entry_box = right_entry_box.get()
     print('right', left_entry_box, right_entry_box)
-    mqtt_sender.send_message('right',[left_entry_box , right_entry_box])
+    mqtt_sender.send_message('right', [left_entry_box, right_entry_box])
 
 
 def handle_stop(mqtt_sender):
@@ -220,6 +220,7 @@ def handle_stop(mqtt_sender):
     """
     print('stop')
     mqtt_sender.send_message('stop')
+
 
 ###############################################################################
 # Handlers for Buttons in the ArmAndClaw frame.
@@ -261,8 +262,8 @@ def handle_move_arm_to_position(arm_position_entry, mqtt_sender):
       :type  mqtt_sender:        com.MqttClient
     """
     arm_position_entry = arm_position_entry.get()
-    print('move arm to position',arm_position_entry)
-    mqtt_sender.send_message('arm_to_position',[arm_position_entry])
+    print('move arm to position', arm_position_entry)
+    mqtt_sender.send_message('arm_to_position', [arm_position_entry])
 
 
 ###############################################################################
@@ -278,7 +279,6 @@ def handle_quit(mqtt_sender):
     print('Robot code has been terminated')
 
 
-
 def handle_exit(mqtt_sender):
     """
     Tell the robot's program to stop its loop (and hence quit).
@@ -291,7 +291,8 @@ def handle_exit(mqtt_sender):
     print('Now exit the remote control')
     exit()
 
-def get_seconds_frame(window,sender):
+
+def get_seconds_frame(window, sender):
     frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
     frame.grid()
 
@@ -299,18 +300,18 @@ def get_seconds_frame(window,sender):
     drive_for_seconds = ttk.Button(frame, text="Drive for Seconds")
     # Grid the widgets:
     speed_label = ttk.Label(frame, text="Speed (0 to 100)")
-    speed_label.grid(row=0,column=0)
+    speed_label.grid(row=0, column=0)
 
     seconds_label = ttk.Label(frame, text="Seconds")
     seconds_label.grid(row=0, column=1)
 
     speed_entry = ttk.Entry(frame, width=8)
-    speed_entry.grid(row=1, column = 0)
+    speed_entry.grid(row=1, column=0)
 
     drive_for_seconds.grid(row=2, column=1)
     seconds_entry = ttk.Entry(frame, width=8, justify=tkinter.RIGHT)
-    seconds_entry.grid(row=1, column = 1)
-    drive_for_seconds["command"] = lambda: go_for_seconds(seconds_entry,sender,speed_entry)
+    seconds_entry.grid(row=1, column=1)
+    drive_for_seconds["command"] = lambda: go_for_seconds(seconds_entry, sender, speed_entry)
     return frame
 
 
@@ -322,7 +323,7 @@ def get_inches_time_frame(window, sender):
     drive_for_inches = ttk.Button(frame, text="Drive for Inches")
 
     speed_label = ttk.Label(frame, text="Speed (0 to 100)")
-    speed_label.grid(row=0,column=0)
+    speed_label.grid(row=0, column=0)
 
     inches_label = ttk.Label(frame, text="Inches")
     inches_label.grid(row=0, column=1)
@@ -333,8 +334,9 @@ def get_inches_time_frame(window, sender):
     drive_for_inches.grid(row=2, column=1)
     inches_entry = ttk.Entry(frame, width=8, justify=tkinter.RIGHT)
     inches_entry.grid(row=1, column=1)
-    drive_for_inches["command"] = lambda: go_for_inches_time(inches_entry, sender,speed_entry)
+    drive_for_inches["command"] = lambda: go_for_inches_time(inches_entry, sender, speed_entry)
     return frame
+
 
 def get_inches_encoder_frame(window, sender):
     frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
@@ -344,14 +346,13 @@ def get_inches_encoder_frame(window, sender):
     drive_for_inches = ttk.Button(frame, text="Drive for Inches")
 
     speed_label = ttk.Label(frame, text="Speed (0 to 100)")
-    speed_label.grid(row=0,column=0)
+    speed_label.grid(row=0, column=0)
 
     inches_label = ttk.Label(frame, text="Inches")
     inches_label.grid(row=0, column=1)
 
     speed_entry = ttk.Entry(frame, width=8)
     speed_entry.grid(row=1, column=0)
-
 
     drive_for_inches.grid(row=2, column=1)
     inches_entry = ttk.Entry(frame, width=8, justify=tkinter.RIGHT)
@@ -360,24 +361,26 @@ def get_inches_encoder_frame(window, sender):
     return frame
 
 
-
-def go_for_seconds(box,sender,speed):
+def go_for_seconds(box, sender, speed):
     box = box.get()
     speed = speed.get()
-    print('go straight for', box, 'seconds ' , 'at speed',speed)
-    sender.send_message('go_straight_for_seconds',[box,speed])
+    print('go straight for', box, 'seconds ', 'at speed', speed)
+    sender.send_message('go_straight_for_seconds', [box, speed])
 
-def go_for_inches_time(box,sender,speed):
+
+def go_for_inches_time(box, sender, speed):
     box = box.get()
     speed = speed.get()
-    print('go straight for', box, 'inches ' , 'at speed',speed)
-    sender.send_message('go_straight_for_inches_using_time',[box,speed])
+    print('go straight for', box, 'inches ', 'at speed', speed)
+    sender.send_message('go_straight_for_inches_using_time', [box, speed])
 
-def go_for_inches_encoder(box,sender,speed):
+
+def go_for_inches_encoder(box, sender, speed):
     box = box.get()
     speed = speed.get()
-    print('go straight for', box, 'inches' , 'at speed',speed)
-    sender.send_message('go_straight_for_inches_using_encoder',[box,speed])
+    print('go straight for', box, 'inches', 'at speed', speed)
+    sender.send_message('go_straight_for_inches_using_encoder', [box, speed])
+
 
 def get_beep_frame(window, sender):
     frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
@@ -387,12 +390,10 @@ def get_beep_frame(window, sender):
     beep = ttk.Button(frame, text="Beep")
 
     number_of_beeps_label = ttk.Label(frame, text="Number of Beeps")
-    number_of_beeps_label.grid(row=0,column=0)
-
+    number_of_beeps_label.grid(row=0, column=0)
 
     number_of_beeps = ttk.Entry(frame, width=8)
     number_of_beeps.grid(row=1, column=0)
-
 
     beep.grid(row=2, column=0)
     beep["command"] = lambda: beep_for_number(sender, number_of_beeps)
@@ -407,7 +408,7 @@ def get_tone_frame(window, sender):
     tone_button = ttk.Button(frame, text="Play Tone")
 
     frequency_label = ttk.Label(frame, text="Frequency")
-    frequency_label.grid(row=0,column=1)
+    frequency_label.grid(row=0, column=1)
 
     duration_label = ttk.Label(frame, text="Duration(seconds)")
     duration_label.grid(row=0, column=0)
@@ -415,12 +416,12 @@ def get_tone_frame(window, sender):
     tone_entry = ttk.Entry(frame, width=8)
     tone_entry.grid(row=1, column=1)
 
-
     tone_button.grid(row=2, column=1)
     duration_entry = ttk.Entry(frame, width=8, justify=tkinter.RIGHT)
     duration_entry.grid(row=1, column=0)
     tone_button["command"] = lambda: tone_at_given_frequency(tone_entry, sender, duration_entry)
     return frame
+
 
 def get_phrase_frame(window, sender):
     frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
@@ -430,30 +431,30 @@ def get_phrase_frame(window, sender):
     speak = ttk.Button(frame, text="Say Phrase")
 
     phrase_label = ttk.Label(frame, text="Phrase")
-    phrase_label.grid(row=0,column=0)
-
+    phrase_label.grid(row=0, column=0)
 
     phrase = ttk.Entry(frame, width=8)
     phrase.grid(row=1, column=0)
-
 
     speak.grid(row=2, column=0)
     speak["command"] = lambda: speak_phrase(sender, phrase)
     return frame
 
 
-def beep_for_number(sender,number):
+def beep_for_number(sender, number):
     number = number.get()
     print('beep', number, 'times')
     sender.send_message('beep_for_given_number', [number])
 
-def tone_at_given_frequency(tone,sender,duration):
+
+def tone_at_given_frequency(tone, sender, duration):
     tone = tone.get()
     duration = duration.get()
-    print('frequency is', tone, 'Plays for',duration,'seconds')
-    sender.send_message('tone_at_a_given_frequency', [tone,duration])
+    print('frequency is', tone, 'Plays for', duration, 'seconds')
+    sender.send_message('tone_at_a_given_frequency', [tone, duration])
 
-def speak_phrase(sender,phrase):
+
+def speak_phrase(sender, phrase):
     phrase = phrase.get()
     print('speak', phrase)
     sender.send_message('speak_phrase', [phrase])
