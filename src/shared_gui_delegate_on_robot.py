@@ -65,14 +65,11 @@ class DelegateThatReceives(object):
     def beep_for_given_number(self, number):
         print('I will beep', number, 'times')
 
-
     def tone_at_a_given_frequency(self, tone, duration):
         print('I will play a tone at frequency', tone, 'for duration', duration)
 
     def speak_phrase(self, phrase):
         print('I will speak phrase', phrase)
 
-
     def quit(self):
         exit()
-        return False

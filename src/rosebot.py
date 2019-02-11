@@ -43,6 +43,7 @@ class DriveSystem(object):
     Controls the robot's motion via GO and STOP methods,
         along with various methods that GO/STOP under control of a sensor.
     """
+
     # -------------------------------------------------------------------------
     # NOTE:
     #   Throughout, when going straight:
@@ -76,10 +77,12 @@ class DriveSystem(object):
         """ Makes the left and right wheel motors spin at the given speeds. """
         self.left_motor.turn_on(left_wheel_speed)
         self.right_motor.turn_on(right_wheel_speed)
+
     def stop(self):
         """ Stops the left and right wheel motors. """
         self.left_motor.turn_off()
         self.right_motor.turn_off()
+
     def go_straight_for_seconds(self, seconds, speed):
         """
         Makes the robot go straight (forward if speed > 0, else backward)
@@ -91,6 +94,7 @@ class DriveSystem(object):
             if time.time() - start >= seconds:
                 self.stop()
                 break
+
     def go_straight_for_inches_using_time(self, inches, speed):
         """
         Makes the robot go straight at the given speed
@@ -102,7 +106,6 @@ class DriveSystem(object):
         seconds = abs(inches * seconds_per_inch_at_100 / speed)
 
         self.go_straight_for_seconds(seconds, speed)
-
 
     def go_straight_for_inches_using_encoder(self, inches, speed):
         """
@@ -117,10 +120,10 @@ class DriveSystem(object):
         val = 0
         while True:
             current = abs(self.left_motor.get_position())
-            #val = val + current
+            # val = val + current
             if current >= desire:
                 break
-            #self.left_motor.reset_position()
+            # self.left_motor.reset_position()
         self.stop()
 
     # -------------------------------------------------------------------------
@@ -192,12 +195,12 @@ class DriveSystem(object):
     # -------------------------------------------------------------------------
 
 
-
 ###############################################################################
 #    ArmAndClaw
 ###############################################################################
 class ArmAndClaw(object):
     """ Controls the robot's arm and claw (which operate together). """
+
     # -------------------------------------------------------------------------
     # NOTE:
     #   A POSITIVE speed for the ArmAndClaw's motor moves the arm UP.
@@ -222,6 +225,7 @@ class ArmAndClaw(object):
             if self.touch_sensor.is_pressed() == True:
                 self.motor.turn_off()
                 break
+
     def calibrate_arm(self):
         """
         Calibrates its Arm, that is:
@@ -267,6 +271,8 @@ class ArmAndClaw(object):
             if abs(self.motor.get_position()) <= 100:
                 self.motor.turn_off()
                 break
+
+
 ###############################################################################
 #    SensorSystem
 ###############################################################################
@@ -276,6 +282,7 @@ class SensorSystem(object):
     the Button objects that form part of the BeaconSystem and DisplaySystem.
     Use this object to get   ** any **   sensor reading.
     """
+
     def __init__(self):
         self.touch_sensor = TouchSensor(1)
         # These need the port numbers
@@ -297,6 +304,7 @@ class SoundSystem(object):
     Has all the kinds of "noise makers" available to the Snatch3r robot.
     Use this object to make   ** any **   sounds.
     """
+
     def __init__(self, beeper, tone_maker, speech_maker, song_maker):
         self.beeper = beeper
         self.tone_maker = tone_maker
@@ -317,6 +325,7 @@ class LEDSystem(object):
     """
     Has the left and right LEDs on the Brick.
     """
+
     def __init__(self):
         """ Constructs and stores the left and right LED objects. """
         self.left_led = LED()
@@ -327,6 +336,7 @@ class LEDSystem(object):
 
     def only_left_on(self):
         """ Turns the left LED on and the right LED off """
+
 
 ###############################################################################
 #    BeaconSystem
@@ -420,7 +430,7 @@ class InfraredProximitySensor(object):
 
 
 class InfraredBeaconSensor(object):
-    def __init__(self, port):   # port must be 1, 2, 3 or 4
+    def __init__(self, port):  # port must be 1, 2, 3 or 4
         self._ir_sensor = ev3.InfraredSensor('in' + str(port))
 
     def get_distance(self):
