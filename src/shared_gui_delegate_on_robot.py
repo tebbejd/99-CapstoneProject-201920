@@ -51,15 +51,15 @@ class DelegateThatReceives(object):
         print('arm position')
 
     def go_straight_for_seconds(self, time, left_wheel):
-        self.robot.drive_system.go_straight_for_seconds(time, left_wheel)
+        self.robot.drive_system.go_straight_for_seconds(int(time), int(left_wheel))
         print('strait for seconds')
 
     def go_straight_for_inches_using_time(self, inches, left_wheel):
-        self.robot.drive_system.go_straight_for_inches_using_time(inches, left_wheel)
+        self.robot.drive_system.go_straight_for_inches_using_time(int(inches), int(left_wheel))
         print('strait for inches using time')
 
     def go_straight_for_inches_using_encoder(self, inches, left_wheel):
-        self.robot.drive_system.go_straight_for_inches_using_encoder(inches, left_wheel)
+        self.robot.drive_system.go_straight_for_inches_using_encoder(int(inches), int(left_wheel))
         print('strait for inches using distance')
 
     def beep_for_given_number(self, number):
@@ -69,7 +69,7 @@ class DelegateThatReceives(object):
 
     def tone_at_a_given_frequency(self, tone, duration):
         print('I will play a tone at frequency', tone, 'for duration', duration)
-        self.robot.tone_maker.tone(tone, int(duration))
+        self.robot.tone_maker.tone(int(tone), int(duration))
 
     def speak_phrase(self, phrase):
         print('I will speak phrase', phrase)
