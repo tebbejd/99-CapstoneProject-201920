@@ -317,22 +317,23 @@ def get_seconds_frame(window, sender):
 def get_inches_time_frame(window, sender):
     frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
     frame.grid()
-
+    frame_label = ttk.Label(frame, text="Go Inches Using Time")
+    frame_label.grid()
     # Construct the widgets on the frame:
     drive_for_inches = ttk.Button(frame, text="Drive for Inches")
 
     speed_label = ttk.Label(frame, text="Speed (0 to 100)")
-    speed_label.grid(row=0, column=0)
+    speed_label.grid(row=1, column=0)
 
     inches_label = ttk.Label(frame, text="Inches")
-    inches_label.grid(row=0, column=1)
+    inches_label.grid(row=1, column=1)
 
     speed_entry = ttk.Entry(frame, width=8)
-    speed_entry.grid(row=1, column=0)
+    speed_entry.grid(row=2, column=0)
 
-    drive_for_inches.grid(row=2, column=1)
+    drive_for_inches.grid(row=3, column=1)
     inches_entry = ttk.Entry(frame, width=8, justify=tkinter.RIGHT)
-    inches_entry.grid(row=1, column=1)
+    inches_entry.grid(row=2, column=1)
     drive_for_inches["command"] = lambda: go_for_inches_time(inches_entry, sender, speed_entry)
     return frame
 
@@ -340,22 +341,24 @@ def get_inches_time_frame(window, sender):
 def get_inches_encoder_frame(window, sender):
     frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
     frame.grid()
+    frame_label = ttk.Label(frame, text="Go Inches Using Encoder")
+    frame_label.grid()
 
     # Construct the widgets on the frame:
     drive_for_inches = ttk.Button(frame, text="Drive for Inches")
 
     speed_label = ttk.Label(frame, text="Speed (0 to 100)")
-    speed_label.grid(row=0, column=0)
+    speed_label.grid(row=1, column=0)
 
     inches_label = ttk.Label(frame, text="Inches")
-    inches_label.grid(row=0, column=1)
+    inches_label.grid(row=1, column=1)
 
     speed_entry = ttk.Entry(frame, width=8)
-    speed_entry.grid(row=1, column=0)
+    speed_entry.grid(row=2, column=0)
 
-    drive_for_inches.grid(row=2, column=1)
+    drive_for_inches.grid(row=3, column=1)
     inches_entry = ttk.Entry(frame, width=8, justify=tkinter.RIGHT)
-    inches_entry.grid(row=1, column=1)
+    inches_entry.grid(row=2, column=1)
     drive_for_inches["command"] = lambda: go_for_inches_encoder(inches_entry, sender, speed_entry)
     return frame
 
