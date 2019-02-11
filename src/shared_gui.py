@@ -409,7 +409,7 @@ def get_tone_frame(window, sender):
     frequency_label = ttk.Label(frame, text="Frequency")
     frequency_label.grid(row=0,column=1)
 
-    duration_label = ttk.Label(frame, text="Duration(milliseconds)")
+    duration_label = ttk.Label(frame, text="Duration(seconds)")
     duration_label.grid(row=0, column=0)
 
     tone_entry = ttk.Entry(frame, width=8)
@@ -450,7 +450,7 @@ def beep_for_number(sender,number):
 def tone_at_given_frequency(tone,sender,duration):
     tone = tone.get()
     duration = duration.get()
-    print('frequency is', tone, 'Plays for',duration,'milliseconds')
+    print('frequency is', tone, 'Plays for',duration,'seconds')
     sender.send_message('tone_at_a_given_frequency', [tone,duration])
 
 def speak_phrase(sender,phrase):
