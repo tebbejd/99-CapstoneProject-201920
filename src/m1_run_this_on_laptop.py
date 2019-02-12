@@ -104,7 +104,7 @@ def grid_proximity_sensor(frame,sender):
     proximity_frame = shared_gui.get_IR_frame(frame,sender)
     proximity_frame.grid(row=1,column=3)
 def grid_camera_frames(frame,sender):
-    # camera_frame = shared_gui.get_camera_frame(frame,sender
+    # camera_frame = shared_gui.get_camera_frame(frame,sender)
     # camer_frame.grid(row=0,column=3)
     pass
 
