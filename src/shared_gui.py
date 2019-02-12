@@ -571,43 +571,63 @@ def get_color_sensor_frame(window,sender):
     go_until_intensity_greater["command"] = lambda: go_until_intensity_greater(sender, intensity_entry1, speed_entry1)
     #go until color is
     speed2_label = ttk.Label(frame, text="Speed")
-    color_label = ttk.Label(frame,text='Desired Color')
+    color_label = ttk.Label(frame,text='Desired Color Integer')
+    color_name_label = ttk.Label(frame,text='Desired Color Name')
     speed2_entry = ttk.Entry(frame, width=8)
     color_entry = ttk.Entry(frame, width=8)
+    color_name_entry = ttk.Entry(frame,width=8)
     go_until_color = ttk.Button(frame, text="Go Until Color Is")
     speed2_label.grid(row=1, column=2)
     speed2_entry.grid(row=2, column=2)
     color_label.grid(row=3,column=2)
     color_entry.grid(row=4,column=2)
-    go_until_color.grid(row=5, column=2)
-    go_until_color["command"] = lambda: go_until_color_is(sender, color_entry, speed2_entry)
+    color_name_label.grid(row=5,column=2)
+    color_name_entry.grid(row=6,column=2)
+    go_until_color.grid(row=7, column=2)
+    go_until_color["command"] = lambda: go_until_color_is(sender, color_name_entry,color_entry, speed2_entry)
     #go until color is not
     speed3_label = ttk.Label(frame, text="Speed")
-    color1_label = ttk.Label(frame, text='Desired Color')
+    color1_label = ttk.Label(frame, text='Desired Color Integer')
+    color1_name_label = ttk.Label(frame,text='Desired Color Name')
     speed3_entry = ttk.Entry(frame, width=8)
     color1_entry = ttk.Entry(frame, width=8)
+    color1_name_entry = ttk.Entry(frame,width=8)
     go_until_color_not = ttk.Button(frame, text="Go Until Color Is Not")
     speed3_label.grid(row=1, column=3)
     speed3_entry.grid(row=2, column=3)
     color1_label.grid(row=3, column=3)
     color1_entry.grid(row=4, column=3)
-    go_until_color_not.grid(row=5, column=3)
-    go_until_color_not["command"] = lambda: go_until_color_is_not(sender, color1_entry, speed3_entry)
-
-
+    color1_name_label.grid(row=5,column=3)
+    color1_name_entry.grid(row=6,column=3)
+    go_until_color_not.grid(row=7, column=3)
+    go_until_color_not["command"] = lambda: go_until_color_is_not(sender,color1_name_entry ,color1_entry, speed3_entry)
     return frame
 
 def get_camera_frame(window,sender):
     pass
 
 def go_until_intensity_greater(sender,intensity,speed):
-    pass
+    intensity = intensity.get()
+    speed = speed.get()
+    print('Goes straight until the intensity is greater than',intensity,'at speed',speed)
+    sender.send_message('go_until_intensity_is_greater', [intensity, speed])
 
 def go_until_intensity_less(sender,intensity,speed):
-    pass
+    intensity = intensity.get()
+    speed = speed.get()
+    print('Goes straight until the intensity is less than', intensity, 'at speed', speed)
+    sender.send_message('go_until_intensity_is_less', [intensity, speed])
 
-def go_until_color_is(sender,color,speed):
-    pass
+def go_until_color_is(sender,color_name,color,speed):
+    color_name = color_name.get()
+    color = color.get()
+    speed = speed.get()
+    print('Goes straight until the color is', color,color_name, 'at speed', speed)
+    sender.send_message('go_until_color_is', [color,color_name ,speed])
 
-def go_until_color_is_not(sender,color,speed):
-    pass
+def go_until_color_is_not(sender,color_name,color,speed):
+    color_name = color_name.get()
+    color = color.get()
+    speed = speed.get()
+    print('Goes straight until the color is not', color, color_name, 'at speed', speed)
+    sender.send_message('go_until_color_is_not', [color, color_name, speed])
