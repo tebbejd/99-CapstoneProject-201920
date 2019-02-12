@@ -115,3 +115,12 @@ class DelegateThatReceives(object):
             color = color_name
         print('Goes straight until the color is not', color, 'at speed', speed)
         self.robot.drive_system.go_straight_until_color_is_not(color,int(speed))
+
+    def display_camera_data(self):
+        self.robot.drive_system.display_camera_data()
+
+    def spin_clockwise_until_object(self, speed, area):
+        self.robot.drive_system.spin_clockwise_until_sees_object(int(speed), int(area))
+
+    def spin_counterclockwise_until_object(self, speed, area):
+        self.robot.drive_system.spin_counterclockwise_until_sees_object(int(speed), int(area))

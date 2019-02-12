@@ -568,7 +568,8 @@ def get_color_sensor_frame(window,sender):
     intensity1_label.grid(row=3,column=1)
     intensity_entry1.grid(row=4,column=1)
     go_until_intensity_greater.grid(row=5, column=1)
-    go_until_intensity_greater["command"] = lambda: go_until_intensity_greater(sender, intensity_entry1, speed_entry1)
+    go_until_intensity_greater["command"] = lambda: go_until_intensity_greater_than(sender, intensity_entry1,
+                                                                                    speed_entry1)
     #go until color is
     speed2_label = ttk.Label(frame, text="Speed")
     color_label = ttk.Label(frame,text='Desired Color Integer')
@@ -604,9 +605,41 @@ def get_color_sensor_frame(window,sender):
     return frame
 
 def get_camera_frame(window,sender):
-    pass
+    frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
+    frame.grid()
+    display_blob = ttk.Button(frame, text='Display Camera Data')
+    display_blob.grid(row=1, column=0)
+    display_blob["command"] = lambda: display_camera_data(sender)
+    # intensity less than
+    frame_label = ttk.Label(frame, text="Camera Operation")
+    speed_label = ttk.Label(frame, text="Speed")
+    area_label = ttk.Label(frame, text='Desired Area')
+    speed_entry = ttk.Entry(frame, width=8)
+    area_entry = ttk.Entry(frame, width=8)
+    go_until_area = ttk.Button(frame, text="Spin to Find Object (CW)")
+    frame_label.grid(row=0, column=1)
+    speed_label.grid(row=1, column=1)
+    speed_entry.grid(row=2, column=1)
+    area_label.grid(row=3, column=1)
+    area_entry.grid(row=4, column=1)
+    go_until_area.grid(row=5, column=1)
+    go_until_area["command"] = lambda: spin_clockwise(sender, area_entry, speed_entry)
+    # intensity greater than
+    speed1_label = ttk.Label(frame, text="Speed")
+    area1_label = ttk.Label(frame, text='Desired Area')
+    speed_entry1 = ttk.Entry(frame, width=8)
+    area1_entry = ttk.Entry(frame, width=8)
+    go_until_area1 = ttk.Button(frame, text="Spin to Find Object (CCW)")
+    speed1_label.grid(row=1, column=2)
+    speed_entry1.grid(row=2, column=2)
+    area1_label.grid(row=3, column=2)
+    area1_entry.grid(row=4, column=2)
+    go_until_area1.grid(row=5, column=2)
+    go_until_area1["command"] = lambda: spin_counterclockwise(sender, area1_entry, speed_entry1)
+    return frame
 
-def go_until_intensity_greater(sender,intensity,speed):
+
+def go_until_intensity_greater_than(sender, intensity, speed):
     intensity = intensity.get()
     speed = speed.get()
     print('Goes straight until the intensity is greater than',intensity,'at speed',speed)
@@ -631,3 +664,18 @@ def go_until_color_is_not(sender,color_name,color,speed):
     speed = speed.get()
     print('Goes straight until the color is not', color, color_name, 'at speed', speed)
     sender.send_message('go_until_color_is_not', [color, color_name, speed])
+
+
+def display_camera_data(sender):
+    print('Display Camera Data')
+    sender.send_message('display_camera_data')
+
+
+def spin_clockwise(sender, area, speed):
+    print('Spin clockwise until camera sees trained color with area', area, 'at speed', speed)
+    sender.send_message('spin_clockwise_until_object', [area, speed])
+
+
+def spin_counterclockwise(sender, area, speed):
+    print('Spin counterclockwise until camera sees trained color with area', area, 'at speed', speed)
+    sender.send_message('spin_counterclockwise_until_object', [area, speed])
