@@ -121,8 +121,9 @@ def pickup_object_using_proximity_sensor(window):
 
 
 def pickup_object(initial_beeping, increasing_beeping):
-    robot = rosebot.RoseBot()
-
+    initial_beeping = initial_beeping.get()
+    increasing_beeping = increasing_beeping.get()
+    print(initial_beeping,increasing_beeping)
 
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
