@@ -237,12 +237,12 @@ class DriveSystem(object):
             if self.sensor_system.ir_proximity_sensor.get_distance_in_inches() > inches + delta:
                 self.go(speed, speed)
                 if self.sensor_system.ir_proximity_sensor.get_distance_in_inches() > inches-delta and self.sensor_system.ir_proximity_sensor.get_distance_in_inches() < inches + delta:
-                    self.stop
+                    self.stop()
                     break
             if self.sensor_system.ir_proximity_sensor.get_distance_in_inches() < inches - delta:
                 self.go(-1*speed, -1*speed)
                 if self.sensor_system.ir_proximity_sensor.get_distance_in_inches() > inches-delta and self.sensor_system.ir_proximity_sensor.get_distance_in_inches() < inches + delta:
-                    self.stop
+                    self.stop()
                     break
             
     # -------------------------------------------------------------------------

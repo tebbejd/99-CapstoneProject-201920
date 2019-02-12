@@ -490,9 +490,9 @@ def get_IR_frame(window, sender):
     forward_label3 = ttk.Label(frame, text ="Inches")
     forward_label3.grid(row=1, column=1)
     forward_label4 = ttk.Label(frame, text="Speed")
-    forward_label4.grid(row=2, column=1)
+    forward_label4.grid(row=3, column=1)
     far_to = ttk.Entry(frame, width=8)
-    far_to.grid(row=3, column=1)
+    far_to.grid(row=2, column=1)
 
     speed_entry = ttk.Entry(frame, width=8)
     speed_entry.grid(row=4, column=1)
@@ -543,26 +543,71 @@ def go_between(sender, inches, delta, speed):
 def get_color_sensor_frame(window,sender):
     frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
     frame.grid()
-
-    # Construct the widgets on the frame:
+    #intensity less than
     frame_label = ttk.Label(frame, text="Color Sensor Operation")
     speed_label = ttk.Label(frame, text="Speed")
-
+    intensity_label = ttk.Label(frame,text='Desired Intensity')
     speed_entry = ttk.Entry(frame, width=8)
-
-
-
-    forward_button = ttk.Button(frame, text="Forward")
-    backward_button = ttk.Button(frame, text="Backward")
-
-
-    # Grid the widgets:
+    intensity_entry = ttk.Entry(frame, width=8)
+    go_until_intensity = ttk.Button(frame, text="Go Until Intensity is Less")
     frame_label.grid(row=0, column=1)
     speed_label.grid(row=1, column=0)
     speed_entry.grid(row=2, column=0)
-
-    forward_button.grid(row=3, column=0)
-    backward_button.grid(row=3, column=1)
+    intensity_label.grid(row=3,column=0)
+    intensity_entry.grid(row=4,column=0)
+    go_until_intensity.grid(row=5, column=0)
+    go_until_intensity["command"] = lambda: go_until_intensity_less(sender, intensity_entry, speed_entry)
+    #intensity greater than
+    speed1_label = ttk.Label(frame, text="Speed")
+    intensity1_label = ttk.Label(frame,text='Desired Intensity')
+    speed_entry1 = ttk.Entry(frame, width=8)
+    intensity_entry1 = ttk.Entry(frame, width=8)
+    go_until_intensity_greater = ttk.Button(frame, text="Go Until Intensity is Greater")
+    speed1_label.grid(row=1, column=1)
+    speed_entry1.grid(row=2, column=1)
+    intensity1_label.grid(row=3,column=1)
+    intensity_entry1.grid(row=4,column=1)
+    go_until_intensity_greater.grid(row=5, column=1)
+    go_until_intensity_greater["command"] = lambda: go_until_intensity_greater(sender, intensity_entry1, speed_entry1)
+    #go until color is
+    speed2_label = ttk.Label(frame, text="Speed")
+    color_label = ttk.Label(frame,text='Desired Color')
+    speed2_entry = ttk.Entry(frame, width=8)
+    color_entry = ttk.Entry(frame, width=8)
+    go_until_color = ttk.Button(frame, text="Go Until Color Is")
+    speed2_label.grid(row=1, column=2)
+    speed2_entry.grid(row=2, column=2)
+    color_label.grid(row=3,column=2)
+    color_entry.grid(row=4,column=2)
+    go_until_color.grid(row=5, column=2)
+    go_until_color["command"] = lambda: go_until_color_is(sender, color_entry, speed2_entry)
+    #go until color is not
+    speed3_label = ttk.Label(frame, text="Speed")
+    color1_label = ttk.Label(frame, text='Desired Color')
+    speed3_entry = ttk.Entry(frame, width=8)
+    color1_entry = ttk.Entry(frame, width=8)
+    go_until_color_not = ttk.Button(frame, text="Go Until Color Is Not")
+    speed3_label.grid(row=1, column=3)
+    speed3_entry.grid(row=2, column=3)
+    color1_label.grid(row=3, column=3)
+    color1_entry.grid(row=4, column=3)
+    go_until_color_not.grid(row=5, column=3)
+    go_until_color_not["command"] = lambda: go_until_color_is_not(sender, color1_entry, speed3_entry)
 
 
     return frame
+
+def get_camera_frame(window,sender):
+    pass
+
+def go_until_intensity_greater(sender,intensity,speed):
+    pass
+
+def go_until_intensity_less(sender,intensity,speed):
+    pass
+
+def go_until_color_is(sender,color,speed):
+    pass
+
+def go_until_color_is_not(sender,color,speed):
+    pass
