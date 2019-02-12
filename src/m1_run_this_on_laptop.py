@@ -46,9 +46,9 @@ def main():
     # -------------------------------------------------------------------------
     # DONE: Implement and call get_my_frames(...)
     get_my_frames(frame, sender)
-    grid_color_sensor_frames(frame,sender)
-    grid_camera_frames(frame,sender)
-    grid_proximity_sensor(frame,sender)
+    grid_color_sensor_frames(frame, sender)
+    grid_camera_frames(frame, sender)
+    grid_proximity_sensor(frame, sender)
     # -------------------------------------------------------------------------
     # Grid the frames.
     # -------------------------------------------------------------------------
@@ -95,17 +95,22 @@ def grid_my_frames(go_straight_for_seconds, go_straight_for_inches_timed, go_str
     play_tone_at_frequency.grid(row=1, column=2)
     speak_phrase.grid(row=2, column=2)
 
-def grid_color_sensor_frames(frame,sender):
-    color_sensor_frame = shared_gui.get_color_sensor_frame(frame,sender)
-    color_sensor_frame.grid(row=0,column=3)
+
+def grid_color_sensor_frames(frame, sender):
+    color_sensor_frame = shared_gui.get_color_sensor_frame(frame, sender)
+    color_sensor_frame.grid(row=0, column=3)
     pass
 
-def grid_proximity_sensor(frame,sender):
-    proximity_frame = shared_gui.get_IR_frame(frame,sender)
-    proximity_frame.grid(row=1,column=3)
-def grid_camera_frames(frame,sender):
+
+def grid_proximity_sensor(frame, sender):
+    proximity_frame = shared_gui.get_IR_frame(frame, sender)
+    proximity_frame.grid(row=1, column=3)
+
+
+def grid_camera_frames(frame, sender):
     camera_frame = shared_gui.get_camera_frame(frame, sender)
     camera_frame.grid(row=2, column=3)
+
 
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.

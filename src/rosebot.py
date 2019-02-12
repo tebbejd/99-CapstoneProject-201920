@@ -139,7 +139,7 @@ class DriveSystem(object):
         Goes straight at the given speed until the intensity returned
         by the color_sensor is less than the given intensity.
         """
-        self.go(speed,speed)
+        self.go(speed, speed)
         while True:
             if self.sensor_system.color_sensor.get_reflected_light_intensity() <= intensity:
                 self.stop()
@@ -168,7 +168,7 @@ class DriveSystem(object):
         then use the   get_color_as_name   method to access
         the color sensor's color.
         """
-        self.go(speed,speed)
+        self.go(speed, speed)
         while True:
             if type(color) is str:
                 if self.sensor_system.color_sensor.get_color_as_name() is color:
@@ -190,12 +190,12 @@ class DriveSystem(object):
         while True:
             if type(color) is str:
                 if self.sensor_system.color_sensor.get_color_as_name() is color:
-                    self.go(speed,speed)
+                    self.go(speed, speed)
                 else:
                     self.stop()
             else:
                 if self.sensor_system.color_sensor.get_color() == color:
-                    self.go(speed,speed)
+                    self.go(speed, speed)
                 else:
                     self.stop()
 
@@ -212,17 +212,19 @@ class DriveSystem(object):
             if self.sensor_system.ir_proximity_sensor.get_distance_in_inches() < inches:
                 break
         self.stop()
+
     def go_backward_until_distance_is_greater_than(self, inches, speed):
         """
         Goes straight at the given speed until the robot is greater than
         the given number of inches from the nearest object that it senses.
         Assumes that it senses an object when it starts.
         """
-        self.go(-1*speed, -1*speed)
+        self.go(-1 * speed, -1 * speed)
         while True:
             if self.sensor_system.ir_proximity_sensor.get_distance_in_inches() > inches:
                 break
         self.stop()
+
     def go_until_distance_is_within(self, delta, inches, speed):
         """
         Goes forward or backward, repeated as necessary, until the robot is
@@ -236,15 +238,15 @@ class DriveSystem(object):
         while True:
             if self.sensor_system.ir_proximity_sensor.get_distance_in_inches() > inches + delta:
                 self.go(speed, speed)
-                if self.sensor_system.ir_proximity_sensor.get_distance_in_inches() > inches-delta and self.sensor_system.ir_proximity_sensor.get_distance_in_inches() < inches + delta:
+                if self.sensor_system.ir_proximity_sensor.get_distance_in_inches() > inches - delta and self.sensor_system.ir_proximity_sensor.get_distance_in_inches() < inches + delta:
                     self.stop()
                     break
             if self.sensor_system.ir_proximity_sensor.get_distance_in_inches() < inches - delta:
-                self.go(-1*speed, -1*speed)
-                if self.sensor_system.ir_proximity_sensor.get_distance_in_inches() > inches-delta and self.sensor_system.ir_proximity_sensor.get_distance_in_inches() < inches + delta:
+                self.go(-1 * speed, -1 * speed)
+                if self.sensor_system.ir_proximity_sensor.get_distance_in_inches() > inches - delta and self.sensor_system.ir_proximity_sensor.get_distance_in_inches() < inches + delta:
                     self.stop()
                     break
-            
+
     # -------------------------------------------------------------------------
     # Methods for driving that use the infrared beacon sensor.
     # -------------------------------------------------------------------------
@@ -267,6 +269,7 @@ class DriveSystem(object):
         given number of inches from the Beacon.
         Assumes that the Beacon is turned on and placed straight ahead.
         """
+
     # -------------------------------------------------------------------------
     # Methods for driving that use the camera.
     # -------------------------------------------------------------------------
@@ -284,7 +287,7 @@ class DriveSystem(object):
         Requires that the user train the camera on the color of the object.
         """
         color = self.sensor_system.camera.get_biggest_blob()
-        self.go(speed,-speed)
+        self.go(speed, -speed)
         while True:
             if self.sensor_system.camera.get_biggest_blob() is color:
                 if self.sensor_system.camera.get_biggest_blob().get_area() >= area:
@@ -304,6 +307,7 @@ class DriveSystem(object):
                 if self.sensor_system.camera.get_biggest_blob().get_area() >= area:
                     self.stop()
                     break
+
 
 ###############################################################################
 #    ArmAndClaw
@@ -450,11 +454,14 @@ class LEDSystem(object):
 ###############################################################################
 class BeaconSystem(object):
     pass
+
+
 ###############################################################################
 #    DisplaySystem
 ###############################################################################
 class DisplaySystem(object):
     pass
+
 
 ###############################################################################
 ###############################################################################
