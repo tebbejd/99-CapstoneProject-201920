@@ -10,6 +10,7 @@ import mqtt_remote_method_calls as com
 import time
 import shared_gui_delegate_on_robot as delegate
 
+
 def main():
     """
     This code, which must run on the EV3 ROBOT:
@@ -17,6 +18,7 @@ def main():
       2. Communicates via MQTT with the GUI code that runs on the LAPTOP.
     """
     real_thing()
+
 
 def real_thing():
     robot = rosebot.RoseBot()
@@ -26,7 +28,6 @@ def real_thing():
 
     while True:
         time.sleep(.01)
-
 
 
 # -----------------------------------------------------------------------------
