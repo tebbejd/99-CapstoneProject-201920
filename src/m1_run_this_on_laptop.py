@@ -75,41 +75,30 @@ def grid_frames(teleop_frame, arm_frame, control_frame):
 
 
 def get_my_frames(frame, sender):
-    go_straight_for_seconds = shared_gui.get_seconds_frame(frame, sender)
-    go_straight_for_inches_timed = shared_gui.get_inches_time_frame(frame, sender)
-    go_straight_for_inches_encoder = shared_gui.get_inches_encoder_frame(frame, sender)
-    beep_for_given_number = shared_gui.get_beep_frame(frame, sender)
-    play_tone_at_frequency = shared_gui.get_tone_frame(frame, sender)
-    speak_phrase = shared_gui.get_phrase_frame(frame, sender)
-
-    grid_my_frames(go_straight_for_seconds, go_straight_for_inches_timed, go_straight_for_inches_encoder,
-                   beep_for_given_number, play_tone_at_frequency, speak_phrase)
+    driving_frame = shared_gui.drive_encoder_frame(frame, sender)
+    sound_frame = shared_gui.sound_frame(frame, sender)
+    grid_my_frames(sound_frame, driving_frame)
 
 
-def grid_my_frames(go_straight_for_seconds, go_straight_for_inches_timed, go_straight_for_inches_encoder,
-                   beep_for_given_number, play_tone_at_frequency, speak_phrase):
-    go_straight_for_seconds.grid(row=0, column=1)
-    go_straight_for_inches_timed.grid(row=1, column=1)
-    go_straight_for_inches_encoder.grid(row=2, column=1)
-    beep_for_given_number.grid(row=0, column=2)
-    play_tone_at_frequency.grid(row=1, column=2)
-    speak_phrase.grid(row=2, column=2)
+def grid_my_frames(sound_frame, driving_frame):
+    sound_frame.grid(row=1, column=1)
+    driving_frame.grid(row=0, column=1)
 
 
 def grid_color_sensor_frames(frame, sender):
     color_sensor_frame = shared_gui.get_color_sensor_frame(frame, sender)
-    color_sensor_frame.grid(row=0, column=3)
+    color_sensor_frame.grid(row=0, column=2)
     pass
 
 
 def grid_proximity_sensor(frame, sender):
     proximity_frame = shared_gui.get_IR_frame(frame, sender)
-    proximity_frame.grid(row=1, column=3)
+    proximity_frame.grid(row=1, column=2)
 
 
 def grid_camera_frames(frame, sender):
     camera_frame = shared_gui.get_camera_frame(frame, sender)
-    camera_frame.grid(row=2, column=3)
+    camera_frame.grid(row=2, column=2)
 
 
 # -----------------------------------------------------------------------------

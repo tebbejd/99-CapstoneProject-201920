@@ -291,6 +291,56 @@ def handle_exit(mqtt_sender):
     exit()
 
 
+def drive_encoder_frame(window, sender):
+    frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
+    frame.grid()
+    frame_label = ttk.Label(frame, text='Driving Functions')
+    frame_label.grid(row=0, column=1)
+    # drive for seconds
+    frame3_label = ttk.Label(frame, text='Go for Seconds')
+    frame3_label.grid(row=1, column=0)
+    drive_for_seconds = ttk.Button(frame, text="Drive for Seconds")
+    speed_label = ttk.Label(frame, text="Speed (0 to 100)")
+    speed_label.grid(row=2, column=0)
+    seconds_label = ttk.Label(frame, text="Seconds")
+    seconds_label.grid(row=4, column=0)
+    speed_entry = ttk.Entry(frame, width=8)
+    speed_entry.grid(row=3, column=0)
+    drive_for_seconds.grid(row=6, column=0)
+    seconds_entry = ttk.Entry(frame, width=8, justify=tkinter.RIGHT)
+    seconds_entry.grid(row=5, column=0)
+    drive_for_seconds["command"] = lambda: go_for_seconds(seconds_entry, sender, speed_entry)
+    # drive for inches using time
+    frame1_label = ttk.Label(frame, text="Go Inches Using Time")
+    frame1_label.grid(row=1, column=1)
+    drive_for_inches = ttk.Button(frame, text="Drive for Inches")
+    speed1_label = ttk.Label(frame, text="Speed (0 to 100)")
+    speed1_label.grid(row=2, column=1)
+    inches_label = ttk.Label(frame, text="Inches")
+    inches_label.grid(row=4, column=1)
+    speed1_entry = ttk.Entry(frame, width=8)
+    speed1_entry.grid(row=3, column=1)
+    drive_for_inches.grid(row=6, column=1)
+    inches_entry = ttk.Entry(frame, width=8, justify=tkinter.RIGHT)
+    inches_entry.grid(row=5, column=1)
+    drive_for_inches["command"] = lambda: go_for_inches_time(inches_entry, sender, speed1_entry)
+    # drive for inches using encoder
+    frame2_label = ttk.Label(frame, text="Go Inches Using Encoder")
+    frame2_label.grid(row=1, column=2)
+    drive1_for_inches = ttk.Button(frame, text="Drive for Inches")
+    speed2_label = ttk.Label(frame, text="Speed (0 to 100)")
+    speed2_label.grid(row=2, column=2)
+    inches1_label = ttk.Label(frame, text="Inches")
+    inches1_label.grid(row=4, column=2)
+    speed2_entry = ttk.Entry(frame, width=8)
+    speed2_entry.grid(row=3, column=2)
+    drive1_for_inches.grid(row=6, column=2)
+    inches1_entry = ttk.Entry(frame, width=8, justify=tkinter.RIGHT)
+    inches1_entry.grid(row=5, column=2)
+    drive1_for_inches["command"] = lambda: go_for_inches_encoder(inches1_entry, sender, speed2_entry)
+    return frame
+
+
 def get_seconds_frame(window, sender):
     frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
     frame.grid()
@@ -384,61 +434,38 @@ def go_for_inches_encoder(box, sender, speed):
     sender.send_message('go_straight_for_inches_using_encoder', [box, speed])
 
 
-def get_beep_frame(window, sender):
+def sound_frame(window, sender):
     frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
     frame.grid()
-
+    frame_label = ttk.Label(frame, text='Sound System')
+    frame_label.grid(row=0, column=1)
     # Construct the widgets on the frame:
     beep = ttk.Button(frame, text="Beep")
-
     number_of_beeps_label = ttk.Label(frame, text="Number of Beeps")
-    number_of_beeps_label.grid(row=0, column=0)
-
+    number_of_beeps_label.grid(row=1, column=0)
     number_of_beeps = ttk.Entry(frame, width=8)
-    number_of_beeps.grid(row=1, column=0)
-
-    beep.grid(row=2, column=0)
+    number_of_beeps.grid(row=2, column=0)
+    beep.grid(row=3, column=0)
     beep["command"] = lambda: beep_for_number(sender, number_of_beeps)
-    return frame
-
-
-def get_tone_frame(window, sender):
-    frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
-    frame.grid()
-
-    # Construct the widgets on the frame:
+    # tone
     tone_button = ttk.Button(frame, text="Play Tone")
-
     frequency_label = ttk.Label(frame, text="Frequency")
-    frequency_label.grid(row=0, column=1)
-
+    frequency_label.grid(row=3, column=1)
     duration_label = ttk.Label(frame, text="Duration(seconds)")
-    duration_label.grid(row=0, column=0)
-
+    duration_label.grid(row=1, column=1)
     tone_entry = ttk.Entry(frame, width=8)
-    tone_entry.grid(row=1, column=1)
-
-    tone_button.grid(row=2, column=1)
+    tone_entry.grid(row=4, column=1)
+    tone_button.grid(row=5, column=1)
     duration_entry = ttk.Entry(frame, width=8, justify=tkinter.RIGHT)
-    duration_entry.grid(row=1, column=0)
+    duration_entry.grid(row=2, column=1)
     tone_button["command"] = lambda: tone_at_given_frequency(tone_entry, sender, duration_entry)
-    return frame
-
-
-def get_phrase_frame(window, sender):
-    frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
-    frame.grid()
-
-    # Construct the widgets on the frame:
+    # phrase
     speak = ttk.Button(frame, text="Say Phrase")
-
     phrase_label = ttk.Label(frame, text="Phrase")
-    phrase_label.grid(row=0, column=0)
-
-    phrase = ttk.Entry(frame, width=8)
-    phrase.grid(row=1, column=0)
-
-    speak.grid(row=2, column=0)
+    phrase_label.grid(row=1, column=2)
+    phrase = ttk.Entry(frame, width=16)
+    phrase.grid(row=2, column=2)
+    speak.grid(row=3, column=2)
     speak["command"] = lambda: speak_phrase(sender, phrase)
     return frame
 
