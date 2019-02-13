@@ -293,7 +293,7 @@ class DriveSystem(object):
         """
         print(type(speed))
         print(speed)
-        self.go(speed,speed)
+        self.go(speed,0-speed)
         while True:
             if self.sensor_system.camera.get_biggest_blob().get_area() >= area:
                 self.stop()
@@ -307,7 +307,7 @@ class DriveSystem(object):
         """
         print(type(speed))
         print(speed)
-        self.go(speed, speed)
+        self.go(0-speed, speed)
         while True:
             print(self.sensor_system.camera.get_biggest_blob().get_area())
             if self.sensor_system.camera.get_biggest_blob().get_area() >= area:
