@@ -89,7 +89,7 @@ class DelegateThatReceives(object):
 
     def go_until_distance_is_within(self, inches, delta, speed):
         print("Go until", inches, "inches from object")
-        self.robot.drive_system.go_until_distance_is_between(int(delta), int(inches), int(speed))
+        self.robot.drive_system.go_until_distance_is_within(int(delta), int(inches), int(speed))
 
     def go_until_intensity_is_greater(self, intensity, speed):
         print('Goes straight until the intensity is greater than', intensity, 'at speed', speed)
