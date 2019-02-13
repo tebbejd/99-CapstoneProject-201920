@@ -9,15 +9,17 @@
 
 
 def pickup_object_tone(frequency, speed, rate, robot):
-    robot.go(speed, speed)
+    robot.drive_system.go(speed, speed)
     initial = robot.sensor_system.ir_proximity_sensor.get_distance_in_inches()
     while True:
         dis = robot.sensor_system.ir_proximity_sensor.get_distance_in_inches()
         if dis < initial:
             frequency = frequency * rate
             initial = dis
-        if robot.sensor_system.ir_proximity_sensor.get_distance_in_inches() < 2:
+        if robot.sensor_system.ir_proximity_sensor.get_distance_in_inches() < 1:
             break
-        robot.sound_system.tone_maker.play_tone(frequency, 1)
-    robot.stop()
+        robot.sound_system.tone_maker.play_tone(frequency, 1000)
+
+        print(robot.sensor_system.ir_proximity_sensor.get_distance_in_inches())
+    robot.drive_system.stop()
     robot.arm_and_claw.raise_arm()

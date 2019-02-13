@@ -101,11 +101,11 @@ def get_tone_frame(window, sender):
     return frame
 
 def go_forward_tone(sender, frequency, speed, rate):
-    inches = frequency.get()
+    frequency = frequency.get()
     speed = speed.get()
     rate = rate.get()
     print(frequency, "HZ intial and", rate, "rate of increase")
-    sender.send_message('m2_go_forward_tone', [frequency, speed, rate])
+    sender.send_message('m2_object_pickup_tone', [frequency, speed, rate])
 
 
 
