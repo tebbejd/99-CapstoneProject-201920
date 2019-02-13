@@ -663,4 +663,4 @@ def jacob_pickup_object_using_proximity_sensor(window,sender):
     increasing_label.grid(row=3, column=0)
     increasing_beeping_rate.grid(row=4, column=0)
     pickup.grid(row=5, column=0)
-    pickup["command"] = lambda: sender.send_message('jacob_pick_up_object_beeping',[initial_beeping_rate, increasing_beeping_rate])
+    pickup["command"] = lambda: sender.send_message('jacob_pick_up_object_beeping',[initial_beeping_rate.get(), increasing_beeping_rate.get()])

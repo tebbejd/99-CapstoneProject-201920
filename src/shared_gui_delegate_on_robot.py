@@ -8,7 +8,6 @@
 """
 import m1_final_project as jacob
 import m2_extra as brandon
-
 class DelegateThatReceives(object):
 
     def __init__(self, robot):
