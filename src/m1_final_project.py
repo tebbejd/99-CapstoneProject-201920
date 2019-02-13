@@ -14,7 +14,7 @@ import time
 def pickup_object(initial_beeping, increasing_beeping,robot):
 
     print(initial_beeping, increasing_beeping)
-    robot.drive_system.go(50, 50)
+    robot.drive_system.go(35, 35)
     count = 0
     while True:
         if robot.sensor_system.ir_proximity_sensor.get_distance_in_inches() > 10:
