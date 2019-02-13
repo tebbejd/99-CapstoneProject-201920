@@ -169,6 +169,7 @@ class DriveSystem(object):
         the color sensor's color.
         """
         self.go(speed, speed)
+        print(type(color))
         while True:
             if type(color) is str:
                 if self.sensor_system.color_sensor.get_color_as_name() is color:
@@ -187,6 +188,7 @@ class DriveSystem(object):
         Colors can be integers from 0 to 7 or any of the strings
         listed in the ColorSensor class.
         """
+        print(type(color))
         while True:
             if type(color) is str:
                 if self.sensor_system.color_sensor.get_color_as_name() is color:
