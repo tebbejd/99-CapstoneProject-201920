@@ -6,8 +6,7 @@
     and Jacob Tebbe and Brandon Wohlfarth.
   Winter term, 2018-2019.
 """
-import m1_run_this_on_robot as jacob
-import m2_run_this_on_robot as brandon
+
 
 class DelegateThatReceives(object):
 
