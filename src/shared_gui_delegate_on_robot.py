@@ -6,7 +6,8 @@
     and Jacob Tebbe and Brandon Wohlfarth.
   Winter term, 2018-2019.
 """
-
+import m1_run_this_on_robot as jacob
+import m2_run_this_on_robot as brandon
 
 class DelegateThatReceives(object):
 
@@ -116,6 +117,7 @@ class DelegateThatReceives(object):
         self.robot.drive_system.go_straight_until_color_is_not(color, int(speed))
 
     def display_camera_data(self):
+        print('display camera data')
         self.robot.drive_system.display_camera_data()
 
     def spin_clockwise_until_object(self, speed, area):

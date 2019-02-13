@@ -53,12 +53,12 @@ def main():
     # Grid the frames.
     # -------------------------------------------------------------------------
     grid_frames(teleop_frame, arm_frame, control_frame)
+
     pickup_object_using_proximity_sensor(
         frame)  # -------------------------------------------------------------------------
     # The event loop:
     # -------------------------------------------------------------------------
     root.mainloop()
-
 
 def get_shared_frames(main_frame, mqtt_sender):
     teleop_frame = shared_gui.get_teleoperation_frame(main_frame, mqtt_sender)
