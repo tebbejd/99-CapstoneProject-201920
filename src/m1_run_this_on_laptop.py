@@ -54,7 +54,7 @@ def main():
     # -------------------------------------------------------------------------
     grid_frames(teleop_frame, arm_frame, control_frame)
 
-    me.pickup_object_using_proximity_sensor(frame,sender)  # -------------------------------------------------------------------------
+    shared_gui.jacob_pickup_object_using_proximity_sensor(frame,sender)  # -------------------------------------------------------------------------
     # The event loop:
     # -------------------------------------------------------------------------
     root.mainloop()
