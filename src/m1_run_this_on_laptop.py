@@ -11,7 +11,7 @@ import mqtt_remote_method_calls as com
 import tkinter
 from tkinter import ttk
 import shared_gui
-
+import m1_final_project as me
 
 def main():
     """
@@ -54,8 +54,7 @@ def main():
     # -------------------------------------------------------------------------
     grid_frames(teleop_frame, arm_frame, control_frame)
 
-    pickup_object_using_proximity_sensor(
-        frame)  # -------------------------------------------------------------------------
+    me.pickup_object_using_proximity_sensor(frame,sender)  # -------------------------------------------------------------------------
     # The event loop:
     # -------------------------------------------------------------------------
     root.mainloop()
@@ -101,28 +100,7 @@ def grid_camera_frames(frame, sender):
     camera_frame.grid(row=2, column=2)
 
 
-def pickup_object_using_proximity_sensor(window):
-    frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
-    frame.grid(row=3, column=0)
-    frame_label = ttk.Label(frame, text='Pickup object using Proximity Sensor')
-    frame_label.grid(row=0, column=0)
-    initial_beeping_rate = ttk.Entry(frame, width=8)
-    increasing_beeping_rate = ttk.Entry(frame, width=8)
-    initial_label = ttk.Label(frame, text='Initial Beeping rate')
-    increasing_label = ttk.Label(frame, text='Increasing Beeping rate')
-    pickup = ttk.Button(frame, text='Pickup object')
-    initial_label.grid(row=1, column=0)
-    initial_beeping_rate.grid(row=2, column=0)
-    increasing_label.grid(row=3, column=0)
-    increasing_beeping_rate.grid(row=4, column=0)
-    pickup.grid(row=5, column=0)
-    pickup["command"] = lambda: pickup_object(initial_beeping_rate, increasing_beeping_rate)
 
-
-def pickup_object(initial_beeping, increasing_beeping):
-    initial_beeping = initial_beeping.get()
-    increasing_beeping = increasing_beeping.get()
-    print(initial_beeping, increasing_beeping)
 
 
 # -----------------------------------------------------------------------------
