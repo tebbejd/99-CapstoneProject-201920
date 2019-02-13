@@ -27,6 +27,8 @@ def real_thing():
     receiver.connect_to_pc()
 
     while True:
+        if receiving_delegate.is_time_to_stop is True:
+            break
         time.sleep(.01)
 
 
