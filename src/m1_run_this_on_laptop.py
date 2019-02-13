@@ -11,7 +11,6 @@ import mqtt_remote_method_calls as com
 import tkinter
 from tkinter import ttk
 import shared_gui
-import rosebot
 
 
 def main():
@@ -109,8 +108,8 @@ def pickup_object_using_proximity_sensor(window):
     frame_label.grid(row=0, column=0)
     initial_beeping_rate = ttk.Entry(frame, width=8)
     increasing_beeping_rate = ttk.Entry(frame, width=8)
-    initial_label = ttk.Label(frame, text='Initial Beeping rate frequency')
-    increasing_label = ttk.Label(frame, text='Increasing Beeping rate frequency')
+    initial_label = ttk.Label(frame, text='Initial Beeping rate')
+    increasing_label = ttk.Label(frame, text='Increasing Beeping rate')
     pickup = ttk.Button(frame, text='Pickup object')
     initial_label.grid(row=1, column=0)
     initial_beeping_rate.grid(row=2, column=0)
