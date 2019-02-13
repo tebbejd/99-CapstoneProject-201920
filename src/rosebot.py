@@ -291,6 +291,7 @@ class DriveSystem(object):
         of the trained color whose area is at least the given area.
         Requires that the user train the camera on the color of the object.
         """
+        print(type(speed))
         print(speed)
         self.go(speed,speed)
         while True:
@@ -304,6 +305,7 @@ class DriveSystem(object):
         of the trained color whose area is at least the given area.
         Requires that the user train the camera on the color of the object.
         """
+        print(type(speed))
         print(speed)
         self.go(speed, speed)
         while True:
