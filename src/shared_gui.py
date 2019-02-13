@@ -636,10 +636,14 @@ def display_camera_data(sender):
 
 
 def spin_clockwise(sender, area, speed):
+    area = area.get()
+    speed = speed.get()
     print('Spin clockwise until camera sees trained color with area', area, 'at speed', speed)
     sender.send_message('spin_clockwise_until_object', [area, speed])
 
 
 def spin_counterclockwise(sender, area, speed):
+    area = area.get()
+    speed = speed.get()
     print('Spin counterclockwise until camera sees trained color with area', area, 'at speed', speed)
     sender.send_message('spin_counterclockwise_until_object', [area, speed])
