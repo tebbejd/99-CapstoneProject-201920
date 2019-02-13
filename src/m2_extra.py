@@ -38,4 +38,9 @@ def go_forward_tone(sender, frequency, speed, rate):
     print(frequency, "HZ intial and", rate, "rate of increase")
     sender.send_message('go_forward_tone', [frequency, speed, rate])
 
-def pickup_object_tone()
+def pickup_object_tone(frequency, speed, rate, robot):
+    robot.go(speed, speed)
+    while True:
+        if robot.sensor_system.ir_proximity_sensor.get_distance_in_inches() < 2:
+            break
+        robot.sound_system.tone_maker.play_tone(frequency, rate)
