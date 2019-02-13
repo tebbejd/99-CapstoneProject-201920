@@ -119,8 +119,8 @@ class DelegateThatReceives(object):
         print('display camera data')
         self.robot.drive_system.display_camera_data()
 
-    def spin_clockwise_until_object(self, speed, area):
+    def spin_clockwise_until_object(self, area, speed):
         self.robot.drive_system.spin_clockwise_until_sees_object(int(speed), int(area))
 
-    def spin_counterclockwise_until_object(self, speed, area):
+    def spin_counterclockwise_until_object(self, area, speed):
         self.robot.drive_system.spin_counterclockwise_until_sees_object(int(speed), int(area))
