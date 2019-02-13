@@ -50,7 +50,7 @@ def main():
     # Frames that are particular to my individual contributions to the project.
     # -------------------------------------------------------------------------
     # TODO: Implement and call get_my_frames(...)
-    tone_frame = brandon.get_tone_frame(main_frame, mqtt_sender)
+    tone_frame = get_tone_frame(main_frame, mqtt_sender)
     # -------------------------------------------------------------------------
     # Grid the frames.
     # -------------------------------------------------------------------------
@@ -74,6 +74,38 @@ def grid_frames(teleop_frame, arm_frame, control_frame, tone_frame):
     arm_frame.grid(row = 1, column = 0)
     control_frame.grid(row = 2, column = 0)
     tone_frame.grid(row = 0, column = 1)
+
+def get_tone_frame(window, sender):
+    frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
+    frame.grid()
+    frame_label = ttk.Label(frame, text="Go using IR sensor")
+    frame_label.grid()
+    # Go forward
+    go_for_distance = ttk.Button(frame, text="Go forward until distance")
+
+    forward_label = ttk.Label(frame, text="How Close to object (inches)")
+    forward_label.grid(row=0, column=0)
+    forward_label1 = ttk.Label(frame, text="Frequency")
+    forward_label1.grid(row=1, column=0)
+    initial = ttk.Entry(frame, width=8)
+    initial.grid(row=2, column=0)
+    forward_label2 = ttk.Label(frame, text="Speed")
+    forward_label2.grid(row=3, column=0)
+    speed_entry1 = ttk.Entry(frame, width=8)
+    speed_entry1.grid(row=4, column=0)
+    rate = ttk.Entry(frame, width=8)
+    rate.grid(row=5, column=0)
+
+    go_for_distance.grid(row=6, column=0)
+    go_for_distance["command"] = lambda: go_forward_tone(sender, initial, speed_entry1, rate)
+    return frame
+
+def go_forward_tone(sender, frequency, speed, rate):
+    inches = frequency.get()
+    speed = speed.get()
+    rate = rate.get()
+    print(frequency, "HZ intial and", rate, "rate of increase")
+    sender.send_message('m2_go_forward_tone', [frequency, speed, rate])
 
 
 

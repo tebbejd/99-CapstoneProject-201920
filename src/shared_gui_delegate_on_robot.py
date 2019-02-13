@@ -129,4 +129,4 @@ class DelegateThatReceives(object):
         jacob.pickup_object(initial_beeping,increasing_beeping,self.robot)
 
     def pick_up_object_tone(self, frequency, speed, rate):
-        brandon.pickup_object_tone(frequency, speed, rate, self.robot)
+        brandon.m2_pickup_object_tone(float(frequency), int(speed), int(rate), self.robot)
