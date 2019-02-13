@@ -100,10 +100,10 @@ class DelegateThatReceives(object):
         self.robot.drive_system.go_straight_until_intensity_is_less_than(int(intensity), int(speed))
 
     def go_until_color_is(self, color_int, color_name, speed):
-        if color_name is '':
-            color = int(color_int)
-        else:
+        if color_int is None:
             color = color_name
+        else:
+            color = int(color_int)
         print('Goes straight until the color is', color, 'at speed', speed)
         self.robot.drive_system.go_straight_until_color_is(color, int(speed))
 

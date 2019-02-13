@@ -193,11 +193,13 @@ class DriveSystem(object):
                     self.go(speed, speed)
                 else:
                     self.stop()
+                    break
             else:
                 if self.sensor_system.color_sensor.get_color() == color:
                     self.go(speed, speed)
                 else:
                     self.stop()
+                    break
 
     # -------------------------------------------------------------------------
     # Methods for driving that use the infrared proximity sensor.
