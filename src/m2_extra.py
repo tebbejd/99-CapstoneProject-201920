@@ -38,4 +38,4 @@ def go_forward_tone(sender, frequency, speed, rate):
     print(frequency, "HZ intial and", rate, "rate of increase")
     sender.send_message('go_forward_tone', [frequency, speed, rate])
 
-def 
+def pickup_object_tone()
