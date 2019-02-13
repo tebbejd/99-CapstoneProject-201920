@@ -433,11 +433,11 @@ def get_IR_frame(window, sender):
     close_to.grid(row=2, column=0)
     forward_label2 = ttk.Label(frame, text="Speed")
     forward_label2.grid(row=3, column=0)
-    speed_entry = ttk.Entry(frame, width=8)
-    speed_entry.grid(row=4, column=0)
+    speed_entry1 = ttk.Entry(frame, width=8)
+    speed_entry1.grid(row=4, column=0)
 
     go_for_distance.grid(row=5, column=0)
-    go_for_distance["command"] = lambda: go_forward_less_than(sender, close_to, speed_entry)
+    go_for_distance["command"] = lambda: go_forward_less_than(sender, close_to, speed_entry1)
     # Going backwards
     go_for_distance_backward = ttk.Button(frame, text="Go backward until distance")
 
@@ -450,11 +450,11 @@ def get_IR_frame(window, sender):
     far_to = ttk.Entry(frame, width=8)
     far_to.grid(row=2, column=1)
 
-    speed_entry = ttk.Entry(frame, width=8)
-    speed_entry.grid(row=4, column=1)
+    speed_entry2 = ttk.Entry(frame, width=8)
+    speed_entry2.grid(row=4, column=1)
 
     go_for_distance_backward.grid(row=5, column=1)
-    go_for_distance_backward["command"] = lambda: go_backward_greater_than(sender, far_to, speed_entry)
+    go_for_distance_backward["command"] = lambda: go_backward_greater_than(sender, far_to, speed_entry2)
     # Go for between
     go_for_distance_between = ttk.Button(frame, text="Go until between")
 
@@ -466,15 +466,15 @@ def get_IR_frame(window, sender):
     close_to_between.grid(row=2, column=2)
     forward_label6 = ttk.Label(frame, text="Speed")
     forward_label6.grid(row=3, column=2)
-    speed_entry = ttk.Entry(frame, width=8)
-    speed_entry.grid(row=4, column=2)
+    speed_entry3 = ttk.Entry(frame, width=8)
+    speed_entry3.grid(row=4, column=2)
     forward_label7 = ttk.Label(frame, text="Delta")
     forward_label7.grid(row=5, column=2)
     delta = ttk.Entry(frame, width=8)
     delta.grid(row=6, column=2)
 
     go_for_distance_between.grid(row=7, column=2)
-    go_for_distance_between["command"] = lambda: go_between(sender, close_to_between, delta, speed_entry)
+    go_for_distance_between["command"] = lambda: go_between(sender, close_to_between, delta, speed_entry3)
     return frame
 
 
