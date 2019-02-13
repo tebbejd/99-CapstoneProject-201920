@@ -18,16 +18,15 @@ def pickup_object(initial_beeping, increasing_beeping,robot):
     count = 0
     while True:
         if robot.sensor_system.ir_proximity_sensor.get_distance_in_inches() > 10:
-            count += 1
             if count % float(initial_beeping) == 0:
                 robot.sound_system.beeper.beep().wait()
         elif robot.sensor_system.ir_proximity_sensor.get_distance_in_inches() >= 1:
-            count += 1
             if count % float(increasing_beeping) == 0:
                 robot.sound_system.beeper.beep().wait()
         elif robot.sensor_system.ir_proximity_sensor.get_distance_in_inches() < .5:
             robot.drive_system.stop()
             robot.arm_and_claw.raise_arm()
             break
+        count += 1
 
 
