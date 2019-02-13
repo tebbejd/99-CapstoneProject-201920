@@ -126,7 +126,10 @@ class DelegateThatReceives(object):
         self.robot.drive_system.spin_counterclockwise_until_sees_object(int(speed), int(area))
 
     def jacob_pick_up_object_beeping(self,initial_beeping,increasing_beeping):
-        jacob.pickup_object(initial_beeping,increasing_beeping,self.robot)
+        jacob.pickup_object_beep(initial_beeping,increasing_beeping,self.robot)
 
     def m2_object_pickup_tone(self, frequency, speed, rate):
         brandon.pickup_object_tone(float(frequency), int(speed), float(rate), self.robot)
+
+    def jacob_pick_up_object_leds(self,initial_cycle,increasing_cycle):
+        jacob.pickup_object_leds(initial_cycle,increasing_cycle,self.robot)

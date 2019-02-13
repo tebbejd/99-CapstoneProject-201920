@@ -411,7 +411,7 @@ class SensorSystem(object):
         self.camera = Camera()
         # self.ir_beacon_sensor = InfraredBeaconSensor(4)
         # self.beacon_system =
-        # self.display_system =
+        #self.display_system =
 
 
 ###############################################################################
