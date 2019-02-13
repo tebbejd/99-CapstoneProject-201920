@@ -7,6 +7,7 @@
   Winter term, 2018-2019.
 """
 import m1_final_project as jacob
+import m2_extra as brandon
 
 class DelegateThatReceives(object):
 
@@ -127,3 +128,6 @@ class DelegateThatReceives(object):
 
     def jacob_pick_up_object_beeping(self,initial_beeping,increasing_beeping):
         jacob.pickup_object(initial_beeping,increasing_beeping,self.robot)
+
+    def pick_up_object_tone(self, frequency, speed, rate):
+        brandon.pickup_object_tone(frequency, speed, rate)

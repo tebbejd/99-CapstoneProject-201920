@@ -13,6 +13,7 @@ from tkinter import ttk
 import shared_gui
 import time
 import math
+import m2_extra as brandon
 
 def main():
     """
@@ -49,12 +50,11 @@ def main():
     # Frames that are particular to my individual contributions to the project.
     # -------------------------------------------------------------------------
     # TODO: Implement and call get_my_frames(...)
-
+    tone_frame = brandon.get_tone_frame(main_frame, mqtt_sender)
     # -------------------------------------------------------------------------
     # Grid the frames.
     # -------------------------------------------------------------------------
-    grid_frames(teleop_frame, arm_frame, control_frame)
-
+    grid_frames(teleop_frame, arm_frame, control_frame, tone_frame)
     # -------------------------------------------------------------------------
     # The event loop:
     # -------------------------------------------------------------------------
@@ -69,10 +69,12 @@ def get_shared_frames(main_frame, mqtt_sender):
 
     return teleop_frame, arm_frame, control_frame
 
-def grid_frames(teleop_frame, arm_frame, control_frame):
+def grid_frames(teleop_frame, arm_frame, control_frame, tone_frame):
     teleop_frame.grid(row = 0, column = 0)
     arm_frame.grid(row = 1, column = 0)
     control_frame.grid(row = 2, column = 0)
+    tone_frame.grid(row = 0, column = 1)
+
 
 
 
