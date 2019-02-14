@@ -5,6 +5,7 @@
   Winter term, 2018-2019.
 """
 import rosebot
+
 def pickup_object_beep(initial_beeping, increasing_beeping,robot):
 
     print(initial_beeping, increasing_beeping)
@@ -68,8 +69,5 @@ def spin_then_pickup(direction,speed,robot):
     else:
         print('spinning counterclockwise at speed',speed)
         robot.drive_system.spin_counterclockwise_until_sees_object(int(speed), 500)
-    while True:
-        if robot.sensor_system.ir_proximity_sensor.get_distance_in_inches() < .6:
-            robot.drive_system.stop()
-            robot.arm_and_claw.raise_arm()
-            break
+
+    pickup_object_beep(5,1,robot)
