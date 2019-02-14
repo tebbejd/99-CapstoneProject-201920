@@ -647,4 +647,3 @@ def spin_counterclockwise(sender, area, speed):
     speed = speed.get()
     print('Spin counterclockwise until camera sees trained color with area', area, 'at speed', speed)
     sender.send_message('spin_counterclockwise_until_object', [area, speed])
-

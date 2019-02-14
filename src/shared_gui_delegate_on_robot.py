@@ -9,6 +9,7 @@
 import m1_final_project as jacob
 import m2_extra as brandon
 
+
 class DelegateThatReceives(object):
 
     def __init__(self, robot):
@@ -71,7 +72,7 @@ class DelegateThatReceives(object):
 
     def tone_at_a_given_frequency(self, tone, duration):
         print('I will play a tone at frequency', tone, 'for duration', duration)
-        self.robot.sound_system.tone_maker.play_tone(int(tone), int(duration)* 1000)
+        self.robot.sound_system.tone_maker.play_tone(int(tone), int(duration) * 1000)
 
     def speak_phrase(self, phrase):
         print('I will speak phrase', phrase)
@@ -126,24 +127,24 @@ class DelegateThatReceives(object):
     def spin_counterclockwise_until_object(self, area, speed):
         self.robot.drive_system.spin_counterclockwise_until_sees_object(int(speed), int(area))
 
-    def jacob_pick_up_object_beeping(self,initial_beeping,increasing_beeping):
-        print(initial_beeping,increasing_beeping)
-        jacob.pickup_object_beep(initial_beeping,increasing_beeping,self.robot)
+    def jacob_pick_up_object_beeping(self, initial_beeping, increasing_beeping):
+        print(initial_beeping, increasing_beeping)
+        jacob.pickup_object_beep(initial_beeping, increasing_beeping, self.robot)
 
     def m2_object_pickup_tone(self, frequency, speed, rate):
         brandon.pickup_object_tone(float(frequency), int(speed), float(rate), self.robot)
 
-    def jacob_pick_up_object_leds(self,initial_cycle,increasing_cycle):
-        print(initial_cycle,increasing_cycle)
-        jacob.pickup_object_leds(initial_cycle,increasing_cycle,self.robot)
+    def jacob_pick_up_object_leds(self, initial_cycle, increasing_cycle):
+        print(initial_cycle, increasing_cycle)
+        jacob.pickup_object_leds(initial_cycle, increasing_cycle, self.robot)
 
-    def jacob_spin_pickup(self,speed,direction):
+    def jacob_spin_pickup(self, speed, direction):
         print(direction)
-        jacob.spin_then_pickup(direction,int(speed),self.robot)
+        jacob.spin_then_pickup(direction, int(speed), self.robot)
 
-    def jacob_spin_pickup_leds(self,speed,direction):
+    def jacob_spin_pickup_leds(self, speed, direction):
         print(direction)
-        jacob.spin_then_pickup_leds(direction,int(speed),self.robot)
+        jacob.spin_then_pickup_leds(direction, int(speed), self.robot)
 
     def brandon_spin_pickup(self, frequency, speed, rate):
         brandon.spin_pickup_clockwise(float(frequency), int(speed), float(rate), self.robot)

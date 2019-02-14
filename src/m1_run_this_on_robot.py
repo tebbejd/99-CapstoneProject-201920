@@ -19,6 +19,7 @@ def main():
     """
     real_thing()
 
+
 def real_thing():
     robot = rosebot.RoseBot()
     receiving_delegate = delegate.DelegateThatReceives(robot)
@@ -29,7 +30,6 @@ def real_thing():
         if receiving_delegate.is_time_to_stop is True:
             break
         time.sleep(.01)
-
 
 
 # -----------------------------------------------------------------------------
