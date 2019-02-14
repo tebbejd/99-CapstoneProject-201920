@@ -53,8 +53,8 @@ def main():
     # Grid the frames.
     # -------------------------------------------------------------------------
     grid_frames(teleop_frame, arm_frame, control_frame)
-    pickup_object_using_proximity_sensor(frame,sender)
-    spin_pickup_object(frame,sender)
+    pickup_object_using_proximity_sensor(frame,sender).grid(row=3,column=0)
+    spin_pickup_object(frame,sender).grid(row=3,column=1)
 
     # -------------------------------------------------------------------------
     # The event loop:
@@ -129,6 +129,7 @@ def pickup_object_using_proximity_sensor(window,sender):
     increasing_cycle_rate.grid(row=4, column=1)
     pickup1.grid(row=5, column=1)
     pickup1["command"] = lambda: sender.send_message('jacob_pick_up_object_leds',[initial_cycle_rate.get(), increasing_cycle_rate.get()])
+    return frame
 
 def spin_pickup_object(window,sender):
     frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
@@ -162,6 +163,7 @@ def spin_pickup_object(window,sender):
     speed1.grid(row=4, column=1)
     pickup1.grid(row=5, column=1)
     pickup1["command"] = lambda: sender.send_message('jacob_spin_pickup_leds', [speed1.get(), direction1.get()])
+    return frame
 
 
 
