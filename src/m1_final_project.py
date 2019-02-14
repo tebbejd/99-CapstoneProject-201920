@@ -69,5 +69,13 @@ def spin_then_pickup(direction,speed,robot):
     else:
         print('spinning counterclockwise at speed',speed)
         robot.drive_system.spin_counterclockwise_until_sees_object(int(speed), 500)
-
     pickup_object_beep(5,1,robot)
+
+def spin_then_pickup_leds(direction,speed,robot):
+    if direction is 'CW':
+        print('spinng clockwise at speed',speed)
+        robot.drive_system.spin_clockwise_until_sees_object(int(speed), 500)
+    else:
+        print('spinning counterclockwise at speed',speed)
+        robot.drive_system.spin_counterclockwise_until_sees_object(int(speed), 500)
+    pickup_object_leds(5,1,robot)

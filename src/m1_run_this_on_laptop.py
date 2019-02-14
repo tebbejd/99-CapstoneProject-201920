@@ -53,8 +53,8 @@ def main():
     # Grid the frames.
     # -------------------------------------------------------------------------
     grid_frames(teleop_frame, arm_frame, control_frame)
-    shared_gui.jacob_pickup_object_using_proximity_sensor(frame,sender)
-    shared_gui.jacob_spin_pickup_object(frame,sender)
+    pickup_object_using_proximity_sensor(frame,sender)
+    spin_pickup_object(frame,sender)
 
     # -------------------------------------------------------------------------
     # The event loop:
@@ -101,6 +101,67 @@ def grid_camera_frames(frame, sender):
     camera_frame = shared_gui.get_camera_frame(frame, sender)
     camera_frame.grid(row=2, column=2)
 
+def pickup_object_using_proximity_sensor(window,sender):
+    frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
+    frame.grid(row=3, column=0)
+    frame_label = ttk.Label(frame, text='Pickup object using Proximity Sensor')
+    frame_label.grid(row=0, column=0)
+    initial_beeping_rate = ttk.Entry(frame, width=8)
+    increasing_beeping_rate = ttk.Entry(frame, width=8)
+    initial_label = ttk.Label(frame, text='Initial Beeping rate')
+    increasing_label = ttk.Label(frame, text='Increasing Beeping rate')
+    pickup = ttk.Button(frame, text='Pickup object')
+    initial_label.grid(row=1, column=0)
+    initial_beeping_rate.grid(row=2, column=0)
+    increasing_label.grid(row=3, column=0)
+    increasing_beeping_rate.grid(row=4, column=0)
+    pickup.grid(row=5, column=0)
+    pickup["command"] = lambda: sender.send_message('jacob_pick_up_object_beeping',[initial_beeping_rate.get(), increasing_beeping_rate.get()])
+    #leds
+    initial_cycle_rate = ttk.Entry(frame, width=8)
+    increasing_cycle_rate = ttk.Entry(frame, width=8)
+    initial_label = ttk.Label(frame, text='Initial Cycle Rate')
+    increasing_label = ttk.Label(frame, text='Increasing Cycle Rate')
+    pickup1 = ttk.Button(frame, text='Pickup object')
+    initial_label.grid(row=1, column=1)
+    initial_cycle_rate.grid(row=2, column=1)
+    increasing_label.grid(row=3, column=1)
+    increasing_cycle_rate.grid(row=4, column=1)
+    pickup1.grid(row=5, column=1)
+    pickup1["command"] = lambda: sender.send_message('jacob_pick_up_object_leds',[initial_cycle_rate.get(), increasing_cycle_rate.get()])
+
+def spin_pickup_object(window,sender):
+    frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
+    frame.grid(row=3, column=1)
+    frame_label = ttk.Label(frame, text='Spin Then Pickup while Beeping')
+    frame_label.grid(row=0, column=0)
+    direction = ttk.Entry(frame, width=8)
+    speed = ttk.Entry(frame, width=8)
+    direction_label = ttk.Label(frame, text='Spin Direction CW or CCW')
+    speed_of_spin_label = ttk.Label(frame, text='Speed of Spin')
+    pickup = ttk.Button(frame, text='Pickup object')
+    direction_label.grid(row=1, column=0)
+    direction.grid(row=2, column=0)
+    speed_of_spin_label.grid(row=3, column=0)
+    speed.grid(row=4, column=0)
+    pickup.grid(row=5, column=0)
+    pickup["command"] = lambda: sender.send_message('jacob_spin_pickup',[speed.get(), direction.get()])
+    #leds
+    frame1 = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
+    frame1.grid(row=3, column=1)
+    frame1_label = ttk.Label(frame, text='Spin Then Pickup while Leds flash')
+    frame1_label.grid(row=0, column=0)
+    direction1 = ttk.Entry(frame, width=8)
+    speed1 = ttk.Entry(frame, width=8)
+    direction1_label = ttk.Label(frame, text='Spin Direction CW or CCW')
+    speed1_of_spin_label = ttk.Label(frame, text='Speed of Spin')
+    pickup1 = ttk.Button(frame, text='Pickup object')
+    direction1_label.grid(row=1, column=0)
+    direction1.grid(row=2, column=0)
+    speed1_of_spin_label.grid(row=3, column=0)
+    speed1.grid(row=4, column=0)
+    pickup1.grid(row=5, column=0)
+    pickup1["command"] = lambda: sender.send_message('jacob_spin_pickup_leds', [speed1.get(), direction1.get()])
 
 
 
