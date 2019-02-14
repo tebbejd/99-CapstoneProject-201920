@@ -8,6 +8,7 @@
 """
 import m1_final_project as jacob
 import m2_extra as brandon
+
 class DelegateThatReceives(object):
 
     def __init__(self, robot):
@@ -133,3 +134,7 @@ class DelegateThatReceives(object):
 
     def jacob_pick_up_object_leds(self,initial_cycle,increasing_cycle):
         jacob.pickup_object_leds(initial_cycle,increasing_cycle,self.robot)
+
+    def jacob_spin_pickup(self,speed,direction):
+        print(direction)
+        jacob.spin_then_pickup(direction,int(speed),self.robot)
