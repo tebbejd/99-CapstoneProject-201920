@@ -164,14 +164,14 @@ def spin_pickup_clockwise(sender, frequency, speed, rate):
     speed = speed.get()
     rate = rate.get()
     print(frequency, "HZ intial and", rate, "rate of increase")
-    sender.send_message('m2_spin_pickup', [frequency, speed, rate])
+    sender.send_message('brandon_spin_pickup', [frequency, speed, rate])
 
 def spin_pickup_counter(sender, frequency, speed, rate):
     frequency = frequency.get()
     speed = speed.get()
     rate = rate.get()
     print(frequency, "HZ intial and", rate, "rate of increase")
-    sender.send_message('m2_spin_pickup_counterclockwise', [frequency, speed, rate])
+    sender.send_message('brandon_spin_pickup_counterclockwise', [frequency, speed, rate])
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # -----------------------------------------------------------------------------

@@ -16,7 +16,7 @@ def pickup_object_tone(frequency, speed, rate, robot):
         if dis < initial:
             frequency = frequency * rate
             initial = dis
-        if robot.sensor_system.ir_proximity_sensor.get_distance_in_inches() < 1:
+        if robot.sensor_system.ir_proximity_sensor.get_distance_in_inches() < 0.75:
             break
         robot.sound_system.tone_maker.play_tone(frequency, 1000)
 
