@@ -89,7 +89,7 @@ def grid_my_frames(sound_frame, driving_frame):
 def grid_color_sensor_frames(frame, sender):
     color_sensor_frame = shared_gui.get_color_sensor_frame(frame, sender)
     color_sensor_frame.grid(row=0, column=2)
-    pass
+
 
 
 def grid_proximity_sensor(frame, sender):
