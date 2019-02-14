@@ -117,7 +117,7 @@ def get_spin_frame(window, sender):
     frame_label = ttk.Label(frame, text="Spin Pickup")
     frame_label.grid()
     # Go forward
-    go_for_distance = ttk.Button(frame, text="Begin")
+    go_for_distance = ttk.Button(frame, text="Clockwise")
 
     forward_label = ttk.Label(frame, text="Spin pickup")
     forward_label.grid(row=0, column=0)
@@ -135,17 +135,43 @@ def get_spin_frame(window, sender):
     rate.grid(row=6, column=0)
 
     go_for_distance.grid(row=7, column=0)
-    go_for_distance["command"] = lambda: spin_pickup(sender, initial, speed_entry1, rate)
+    go_for_distance["command"] = lambda: spin_pickup_clockwise(sender, initial, speed_entry1, rate)
+
+    # Go forward
+    go_for_distance = ttk.Button(frame, text="Counter Clockwise")
+
+    forward_label4 = ttk.Label(frame, text="Spin pickup")
+    forward_label4.grid(row=0, column=1)
+    forward_label5 = ttk.Label(frame, text="Frequency")
+    forward_label5.grid(row=1, column=1)
+    initial1 = ttk.Entry(frame, width=8)
+    initial1.grid(row=2, column=1)
+    forward_label6 = ttk.Label(frame, text="Speed")
+    forward_label6.grid(row=3, column=1)
+    speed_entry2 = ttk.Entry(frame, width=8)
+    speed_entry2.grid(row=4, column=1)
+    rate2 = ttk.Entry(frame, width=8)
+    rate_label1 = ttk.Label(frame, text="Rate")
+    rate_label1.grid(row=5, column=1)
+    rate2.grid(row=6, column=1)
+
+    go_for_distance.grid(row=7, column=1)
+    go_for_distance["command"] = lambda: spin_pickup_counter(sender, initial1, speed_entry2, rate2)
     return frame
 
-def spin_pickup(sender, frequency, speed, rate):
+def spin_pickup_clockwise(sender, frequency, speed, rate):
     frequency = frequency.get()
     speed = speed.get()
     rate = rate.get()
     print(frequency, "HZ intial and", rate, "rate of increase")
     sender.send_message('m2_spin_pickup', [frequency, speed, rate])
 
-
+def spin_pickup_counter(sender, frequency, speed, rate):
+    frequency = frequency.get()
+    speed = speed.get()
+    rate = rate.get()
+    print(frequency, "HZ intial and", rate, "rate of increase")
+    sender.send_message('m2_spin_pickup_counterclockwise', [frequency, speed, rate])
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # -----------------------------------------------------------------------------

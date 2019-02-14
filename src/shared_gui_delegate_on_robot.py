@@ -146,4 +146,7 @@ class DelegateThatReceives(object):
         jacob.spin_then_pickup_leds(direction,int(speed),self.robot)
 
     def brandon_spin_pickup(self, frequency, speed, rate):
-        brandon.spin_pickup(float(frequency), int(speed), float(rate), self.robot)
+        brandon.spin_pickup_clockwise(float(frequency), int(speed), float(rate), self.robot)
+
+    def brandon_spin_pickup_counterclockwise(self, frequency, speed, rate):
+        brandon.spin_pickup_counterclockwise(float(frequency), int(speed), float(rate), self.robot)
