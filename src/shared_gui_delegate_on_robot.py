@@ -144,3 +144,6 @@ class DelegateThatReceives(object):
     def jacob_spin_pickup_leds(self,speed,direction):
         print(direction)
         jacob.spin_then_pickup_leds(direction,int(speed),self.robot)
+
+    def brandon_spin_pickup(self, frequency, speed, rate):
+        brandon.spin_pickup(float(frequency), int(speed), float(rate), self.robot)
