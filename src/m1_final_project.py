@@ -17,12 +17,12 @@ def pickup_object_beep(initial_beeping, increasing_beeping,robot):
             if count % float(initial_beeping) == 0:
                 robot.sound_system.beeper.beep().wait()
                 count = 0
-        elif robot.sensor_system.ir_proximity_sensor.get_distance_in_inches() >= .7:
+        elif robot.sensor_system.ir_proximity_sensor.get_distance_in_inches() >= 1.1:
             if count % float(increasing_beeping) == 0:
                 robot.sound_system.beeper.beep().wait()
                 count =0
             count += .5
-        elif robot.sensor_system.ir_proximity_sensor.get_distance_in_inches() < .6:
+        elif robot.sensor_system.ir_proximity_sensor.get_distance_in_inches() < 1:
             robot.drive_system.stop()
             robot.arm_and_claw.raise_arm()
             break
@@ -39,12 +39,12 @@ def pickup_object_leds(initial_cycle, increasing_cycle,robot):
             if count % float(initial_cycle) == 0:
                 led_cycle()
                 count = 0
-        elif robot.sensor_system.ir_proximity_sensor.get_distance_in_inches() >= .7:
+        elif robot.sensor_system.ir_proximity_sensor.get_distance_in_inches() >= 1.1:
             if count % float(increasing_cycle) == 0:
                 led_cycle()
                 count =0
             count += .5
-        elif robot.sensor_system.ir_proximity_sensor.get_distance_in_inches() < .6:
+        elif robot.sensor_system.ir_proximity_sensor.get_distance_in_inches() < 1:
             robot.drive_system.stop()
             robot.arm_and_claw.raise_arm()
             break
@@ -64,31 +64,35 @@ def led_cycle():
 
 def spin_then_pickup(direction,speed,robot):
     print('hewwo')
-    if direction is 'CW':
+    if str(direction) is 'CW':
         print('spinng clockwise at speed',speed)
         robot.drive_system.spin_clockwise_until_sees_object(int(speed), 500)
-        robot.drive_system.go(speed, 0-speed)
-        time.sleep(.5)
-        robot.drive_system.stop()
+        spin_to_center(robot, direction, speed)
+
     else:
         print('spinning counterclockwise at speed',speed)
         robot.drive_system.spin_counterclockwise_until_sees_object(int(speed), 500)
-        robot.drive_system.go(0-speed, speed)
-        time.sleep(.5)
-        robot.drive_system.stop()
+        spin_to_center(robot, direction, speed)
     pickup_object_beep(5,1,robot)
 
 def spin_then_pickup_leds(direction,speed,robot):
-    if direction is 'CW':
+    if str(direction) is 'CW':
         print('spinng clockwise at speed',speed)
         robot.drive_system.spin_clockwise_until_sees_object(int(speed), 500)
-        robot.drive_system.go(speed,0-speed)
-        time.sleep(.5)
-        robot.drive_system.stop()
+        spin_to_center(robot,direction,speed)
     else:
         print('spinning counterclockwise at speed',speed)
         robot.drive_system.spin_counterclockwise_until_sees_object(int(speed), 500)
-        robot.drive_system.go(0-speed,speed)
-        time.sleep(.5)
-        robot.drive_system.stop()
+        spin_to_center(robot,direction,speed)
     pickup_object_leds(5,1,robot)
+
+def spin_to_center(robot,direction,speed):
+    while True:
+        if str(direction) is 'CW':
+            robot.drive_system.go(speed, 0 - speed)
+        else:
+            robot.drive_system.go(0-speed,speed)
+        b = robot.sensor_system.camera.get_biggest_blob()
+        print(b.center.x)
+        if b.center.x < 165 and b.center.x > 155:
+            robot.drive_system.stop()
