@@ -13,52 +13,9 @@ from tkinter import ttk
 import shared_gui
 
 def main():
-    """
-    This code, which must run on a LAPTOP:
-      1. Constructs a GUI for my part of the Capstone Project.
-      2. Communicates via MQTT with the code that runs on the EV3 robot.
-    """
-    # -------------------------------------------------------------------------
-    # Construct and connect the MQTT Client:
-    # -------------------------------------------------------------------------
-    sender = com.MqttClient()
-    sender.connect_to_ev3()
+    sprint_1_and_2_frames()
+    final_project_frame()
 
-    # -------------------------------------------------------------------------
-    # The root TK object for the GUI:
-    # -------------------------------------------------------------------------
-    root = tkinter.Tk()
-    root.title('Capstone Project Winter 2019')
-
-    # -------------------------------------------------------------------------
-    # The main frame, upon which the other frames are placed.
-    # -------------------------------------------------------------------------
-    frame = ttk.Frame(root, padding=10, borderwidth=5, relief='groove')
-    frame.grid()
-    # -------------------------------------------------------------------------
-    # Sub-frames for the shared GUI that the team developed:
-    # -------------------------------------------------------------------------
-    teleop_frame, arm_frame, control_frame = get_shared_frames(frame, sender)
-
-    # -------------------------------------------------------------------------
-    # Frames that are particular to my individual contributions to the project.
-    # -------------------------------------------------------------------------
-    # DONE: Implement and call get_my_frames(...)
-    get_my_frames(frame, sender)
-    grid_color_sensor_frames(frame, sender)
-    grid_camera_frames(frame, sender)
-    grid_proximity_sensor(frame, sender)
-    # -------------------------------------------------------------------------
-    # Grid the frames.
-    # -------------------------------------------------------------------------
-    grid_frames(teleop_frame, arm_frame, control_frame)
-    pickup_object_using_proximity_sensor(frame,sender).grid(row=3,column=0)
-    spin_pickup_object(frame,sender).grid(row=3,column=1)
-
-    # -------------------------------------------------------------------------
-    # The event loop:
-    # -------------------------------------------------------------------------
-    root.mainloop()
 
 def get_shared_frames(main_frame, mqtt_sender):
     teleop_frame = shared_gui.get_teleoperation_frame(main_frame, mqtt_sender)
@@ -164,7 +121,56 @@ def spin_pickup_object(window,sender):
     pickup1["command"] = lambda: sender.send_message('jacob_spin_pickup_leds', [speed1.get(), direction1.get()])
     return frame
 
+def sprint_1_and_2_frames():
+    """
+    This code, which must run on a LAPTOP:
+      1. Constructs a GUI for my part of the Capstone Project.
+      2. Communicates via MQTT with the code that runs on the EV3 robot.
+    """
+    # -------------------------------------------------------------------------
+    # Construct and connect the MQTT Client:
+    # -------------------------------------------------------------------------
+    sender = com.MqttClient()
+    sender.connect_to_ev3()
 
+    # -------------------------------------------------------------------------
+    # The root TK object for the GUI:
+    # -------------------------------------------------------------------------
+    root = tkinter.Tk()
+    root.title('Capstone Project Winter 2019')
+
+    # -------------------------------------------------------------------------
+    # The main frame, upon which the other frames are placed.
+    # -------------------------------------------------------------------------
+    frame = ttk.Frame(root, padding=10, borderwidth=5, relief='groove')
+    frame.grid()
+    # -------------------------------------------------------------------------
+    # Sub-frames for the shared GUI that the team developed:
+    # -------------------------------------------------------------------------
+    teleop_frame, arm_frame, control_frame = get_shared_frames(frame, sender)
+
+    # -------------------------------------------------------------------------
+    # Frames that are particular to my individual contributions to the project.
+    # -------------------------------------------------------------------------
+    # DONE: Implement and call get_my_frames(...)
+    get_my_frames(frame, sender)
+    grid_color_sensor_frames(frame, sender)
+    grid_camera_frames(frame, sender)
+    grid_proximity_sensor(frame, sender)
+    # -------------------------------------------------------------------------
+    # Grid the frames.
+    # -------------------------------------------------------------------------
+    grid_frames(teleop_frame, arm_frame, control_frame)
+    pickup_object_using_proximity_sensor(frame,sender).grid(row=3,column=0)
+    spin_pickup_object(frame,sender).grid(row=3,column=1)
+
+    # -------------------------------------------------------------------------
+    # The event loop:
+    # -------------------------------------------------------------------------
+    root.mainloop()
+
+def final_project_frame():
+    pass
 
 
 # -----------------------------------------------------------------------------
