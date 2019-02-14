@@ -12,8 +12,9 @@ import tkinter
 from tkinter import ttk
 import shared_gui
 
+
 def main():
-    sprint_1_and_2_frames()
+    # sprint_1_and_2_frames()
     final_project_frame()
 
 
@@ -47,7 +48,6 @@ def grid_color_sensor_frames(frame, sender):
     color_sensor_frame.grid(row=0, column=2)
 
 
-
 def grid_proximity_sensor(frame, sender):
     proximity_frame = shared_gui.get_IR_frame(frame, sender)
     proximity_frame.grid(row=1, column=2)
@@ -57,7 +57,8 @@ def grid_camera_frames(frame, sender):
     camera_frame = shared_gui.get_camera_frame(frame, sender)
     camera_frame.grid(row=2, column=2)
 
-def pickup_object_using_proximity_sensor(window,sender):
+
+def pickup_object_using_proximity_sensor(window, sender):
     frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
     frame.grid(row=3, column=0)
     frame_label = ttk.Label(frame, text='Pickup object using Proximity Sensor')
@@ -72,8 +73,9 @@ def pickup_object_using_proximity_sensor(window,sender):
     increasing_label.grid(row=3, column=0)
     increasing_beeping_rate.grid(row=4, column=0)
     pickup.grid(row=5, column=0)
-    pickup["command"] = lambda: sender.send_message('jacob_pick_up_object_beeping',[initial_beeping_rate.get(), increasing_beeping_rate.get()])
-    #leds
+    pickup["command"] = lambda: sender.send_message('jacob_pick_up_object_beeping',
+                                                    [initial_beeping_rate.get(), increasing_beeping_rate.get()])
+    # leds
     initial_cycle_rate = ttk.Entry(frame, width=8)
     increasing_cycle_rate = ttk.Entry(frame, width=8)
     initial_label = ttk.Label(frame, text='Initial Cycle Rate')
@@ -84,10 +86,12 @@ def pickup_object_using_proximity_sensor(window,sender):
     increasing_label.grid(row=3, column=1)
     increasing_cycle_rate.grid(row=4, column=1)
     pickup1.grid(row=5, column=1)
-    pickup1["command"] = lambda: sender.send_message('jacob_pick_up_object_leds',[initial_cycle_rate.get(), increasing_cycle_rate.get()])
+    pickup1["command"] = lambda: sender.send_message('jacob_pick_up_object_leds',
+                                                     [initial_cycle_rate.get(), increasing_cycle_rate.get()])
     return frame
 
-def spin_pickup_object(window,sender):
+
+def spin_pickup_object(window, sender):
     frame = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
     frame.grid(row=3, column=1)
     frame_label = ttk.Label(frame, text='Spin Then Pickup while Beeping')
@@ -102,8 +106,8 @@ def spin_pickup_object(window,sender):
     speed_of_spin_label.grid(row=3, column=0)
     speed.grid(row=4, column=0)
     pickup.grid(row=5, column=0)
-    pickup["command"] = lambda: sender.send_message('jacob_spin_pickup',[speed.get(), direction.get()])
-    #leds
+    pickup["command"] = lambda: sender.send_message('jacob_spin_pickup', [speed.get(), direction.get()])
+    # leds
     frame1 = ttk.Frame(window, padding=10, borderwidth=5, relief="ridge")
     frame1.grid(row=3, column=1)
     frame1_label = ttk.Label(frame, text='Spin Then Pickup while Leds flash')
@@ -120,6 +124,7 @@ def spin_pickup_object(window,sender):
     pickup1.grid(row=5, column=1)
     pickup1["command"] = lambda: sender.send_message('jacob_spin_pickup_leds', [speed1.get(), direction1.get()])
     return frame
+
 
 def sprint_1_and_2_frames():
     """
@@ -161,18 +166,95 @@ def sprint_1_and_2_frames():
     # Grid the frames.
     # -------------------------------------------------------------------------
     grid_frames(teleop_frame, arm_frame, control_frame)
-    pickup_object_using_proximity_sensor(frame,sender).grid(row=3,column=0)
-    spin_pickup_object(frame,sender).grid(row=3,column=1)
+    pickup_object_using_proximity_sensor(frame, sender).grid(row=3, column=0)
+    spin_pickup_object(frame, sender).grid(row=3, column=1)
 
     # -------------------------------------------------------------------------
     # The event loop:
     # -------------------------------------------------------------------------
     root.mainloop()
 
+
 def final_project_frame():
+    sender = com.MqttClient()
+    sender.connect_to_ev3()
+    root = tkinter.Tk()
+    root.title('Capstone Project Winter 2019')
+    frame = ttk.Frame(root, padding=10, borderwidth=5, relief='groove')
+    frame.grid()
+    grid_destrution_bot_frames(frame, sender)
+
+    root.mainloop()
+
+
+def grid_destrution_bot_frames(frame, sender):
+    label = ttk.Label(frame, text='Destruction Bot')
+    label.grid(row=0, column=1)
+
+    # introduce yourself
+    introduction = ttk.Button(frame, text='Introduction')
+    introduction.grid(row=1, column=0)
+    phrase = 'Bob the Builder. Can he fix it? We shall see'
+    introduction["command"] = lambda: sender.send_message('speak_phrase', [phrase])
+
+    # survey site
+    survey_site = ttk.Button(frame, text='Survey Site')
+    survey_site.grid(row=2, column=0)
+    survey_site["command"] = lambda: survey_the_site(sender)
+
+    # tell people this looks easy
+    status_report = ttk.Button(frame, text='Ask for status report')
+    status_report.grid(row=3, column=0)
+    status_report["command"] = lambda: sender.send_message('speak_phrase',
+                                                           ['This looks easy. It will be done in no time'])
+
+    # follow line to get to site
+    head_to_site = ttk.Button(frame, text='Have robot start the job')
+    head_to_site.grid(row=4, column=0)
+    head_to_site["command"] = lambda: head_towards_site(sender)
+    speed_label = ttk.Label(frame,text='How fast should I do my work')
+    speed_label.grid(row=3,column=2)
+    speed = tkinter.Scale(frame,orient='horizontal')
+    speed.grid(row=4,column=2)
+    # turn and knock down objects and yell destroy
+    question_label = ttk.Label(frame, text='Are you ready for me to start?')
+    question_label.grid(row=5, column=0)
+    answer = ttk.Entry(frame, width=5)
+    answer.grid(row=5, column=1)
+    question = ttk.Button(frame, text='Tell the robot')
+    question.grid(row=5, column=2)
+    question["command"] = lambda: start_destruction(sender, answer)
+
+    # fire robot / run away
+    quit_destruction_bot = ttk.Button(frame, text='Fire Robot')
+    quit_destruction_bot.grid(row=7, column=3)
+    quit_destruction_bot["command"] = lambda: end_of_desruction_bot(sender)
+
+
+def end_of_desruction_bot(sender):
+    phrase = 'My time has come. I hope I was a good boy.'
+    run_away(sender)
+    sender.send_message('speak_phrase', [phrase])
+
+
+def survey_the_site(sender):
     pass
 
 
+def head_towards_site(sender):
+    pass
+
+
+def start_destruction(sender, answer):
+    answer = answer.get()
+    if answer == 'yes':
+        pass
+    else:
+        print('I will wait until you are ready')
+        return
+
+def run_away(sender):
+    pass
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # -----------------------------------------------------------------------------
