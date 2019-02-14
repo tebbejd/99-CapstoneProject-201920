@@ -74,10 +74,11 @@ def spin_then_pickup(direction,speed,robot):
         robot.drive_system.spin_counterclockwise_until_sees_object(int(speed), 500)
         spin_to_center(robot, direction, speed)
     pickup_object_beep(5,1,robot)
+    return
 
 def spin_then_pickup_leds(direction,speed,robot):
-    if str(direction) is 'CW':
-        print('spinng clockwise at speed',speed)
+    if direction[1] == 'w':
+        print('spinnig clockwise at speed',speed)
         robot.drive_system.spin_clockwise_until_sees_object(int(speed), 500)
         spin_to_center(robot,direction,speed)
     else:
@@ -85,10 +86,11 @@ def spin_then_pickup_leds(direction,speed,robot):
         robot.drive_system.spin_counterclockwise_until_sees_object(int(speed), 500)
         spin_to_center(robot,direction,speed)
     pickup_object_leds(5,1,robot)
+    return
 
 def spin_to_center(robot,direction,speed):
     while True:
-        if str(direction) is 'CW':
+        if direction[1] == 'w':
             robot.drive_system.go(speed, 0 - speed)
         else:
             robot.drive_system.go(0-speed,speed)
@@ -96,3 +98,4 @@ def spin_to_center(robot,direction,speed):
         print(b.center.x)
         if b.center.x < 165 and b.center.x > 155:
             robot.drive_system.stop()
+            break
