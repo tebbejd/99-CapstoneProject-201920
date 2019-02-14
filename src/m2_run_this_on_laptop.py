@@ -116,17 +116,17 @@ def get_spin_frame(window, sender):
     frame.grid()
     frame_label = ttk.Label(frame, text="Spin Pickup")
     frame_label.grid()
-    # Go forward
+    # Clockwise
     go_for_distance = ttk.Button(frame, text="Clockwise")
 
     forward_label = ttk.Label(frame, text="Spin pickup")
     forward_label.grid(row=0, column=0)
-    forward_label1 = ttk.Label(frame, text="Frequency")
-    forward_label1.grid(row=1, column=0)
+    freq_label1 = ttk.Label(frame, text="Frequency")
+    freq_label1.grid(row=1, column=0)
     initial = ttk.Entry(frame, width=8)
     initial.grid(row=2, column=0)
-    forward_label2 = ttk.Label(frame, text="Speed")
-    forward_label2.grid(row=3, column=0)
+    speed_label2 = ttk.Label(frame, text="Speed")
+    speed_label2.grid(row=3, column=0)
     speed_entry1 = ttk.Entry(frame, width=8)
     speed_entry1.grid(row=4, column=0)
     rate = ttk.Entry(frame, width=8)
@@ -137,17 +137,17 @@ def get_spin_frame(window, sender):
     go_for_distance.grid(row=7, column=0)
     go_for_distance["command"] = lambda: spin_pickup_clockwise(sender, initial, speed_entry1, rate)
 
-    # Go forward
-    go_for_distance = ttk.Button(frame, text="Counter Clockwise")
+    # Counter
+    go_for_distance1 = ttk.Button(frame, text="Counter Clockwise")
 
     forward_label4 = ttk.Label(frame, text="Spin pickup")
     forward_label4.grid(row=0, column=1)
-    forward_label5 = ttk.Label(frame, text="Frequency")
-    forward_label5.grid(row=1, column=1)
+    freq_label5 = ttk.Label(frame, text="Frequency")
+    freq_label5.grid(row=1, column=1)
     initial1 = ttk.Entry(frame, width=8)
     initial1.grid(row=2, column=1)
-    forward_label6 = ttk.Label(frame, text="Speed")
-    forward_label6.grid(row=3, column=1)
+    speed_label6 = ttk.Label(frame, text="Speed")
+    speed_label6.grid(row=3, column=1)
     speed_entry2 = ttk.Entry(frame, width=8)
     speed_entry2.grid(row=4, column=1)
     rate2 = ttk.Entry(frame, width=8)
@@ -155,8 +155,8 @@ def get_spin_frame(window, sender):
     rate_label1.grid(row=5, column=1)
     rate2.grid(row=6, column=1)
 
-    go_for_distance.grid(row=7, column=1)
-    go_for_distance["command"] = lambda: spin_pickup_counter(sender, initial1, speed_entry2, rate2)
+    go_for_distance1.grid(row=7, column=1)
+    go_for_distance1["command"] = lambda: spin_pickup_counter(sender, initial1, speed_entry2, rate2)
     return frame
 
 def spin_pickup_clockwise(sender, frequency, speed, rate):
