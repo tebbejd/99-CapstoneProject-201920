@@ -6,6 +6,7 @@
 """
 import rosebot
 import time
+
 def pickup_object_beep(initial_beeping, increasing_beeping,robot):
 
     print(initial_beeping, increasing_beeping)
@@ -52,14 +53,14 @@ def pickup_object_leds(initial_cycle, increasing_cycle,robot):
 def led_cycle():
     left_led = rosebot.LED('left')
     right_led = rosebot.LED('right')
-    left_led.turn_on().wait()
-    left_led.turn_off().wait()
-    right_led.turn_on().wait()
-    right_led.turn_off().wait()
-    left_led.turn_on().wait()
-    right_led.turn_on().wait()
-    left_led.turn_off().wait()
-    right_led.turn_off().wait()
+    left_led.turn_on()
+    left_led.turn_off()
+    right_led.turn_on()
+    right_led.turn_off()
+    left_led.turn_on()
+    right_led.turn_on()
+    left_led.turn_off()
+    right_led.turn_off()
 
 def spin_then_pickup(direction,speed,robot):
     print('hewwo')
@@ -82,12 +83,12 @@ def spin_then_pickup_leds(direction,speed,robot):
         print('spinng clockwise at speed',speed)
         robot.drive_system.spin_clockwise_until_sees_object(int(speed), 500)
         robot.drive_system.go(speed,0-speed)
-        time.sleep(.1)
+        time.sleep(.5)
         robot.drive_system.stop()
     else:
         print('spinning counterclockwise at speed',speed)
         robot.drive_system.spin_counterclockwise_until_sees_object(int(speed), 500)
         robot.drive_system.go(0-speed,speed)
-        time.sleep(.1)
+        time.sleep(.5)
         robot.drive_system.stop()
     pickup_object_leds(5,1,robot)
