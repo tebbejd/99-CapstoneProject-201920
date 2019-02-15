@@ -102,3 +102,19 @@ def spin_to_center(robot, direction):
         if b.center.x <= 165 and b.center.x >= 155:
             robot.drive_system.stop()
             break
+
+def start_destruction(answer,speed,robot):
+    if answer == 'yes':
+        print('My speed is set to', speed)
+    else:
+        print('I will wait until you are ready')
+        return
+
+def survey_site(robot):
+    pass
+
+def head_towards_site(robot):
+    pass
+
+def run_away(robot:
+    pass
