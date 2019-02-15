@@ -188,8 +188,8 @@ def final_project_frame():
 
 
 def grid_destrution_bot_frames(frame, sender):
-    label = ttk.Label(frame, text='Destruction Bot')
-    label.grid(row=0, column=1)
+    label = ttk.Label(frame, text='Destruction Bot',font=('Helvitica',16))
+    label.grid(row=0, column=2)
 
     # introduce yourself
     introduction = ttk.Button(frame, text='Introduction')
@@ -199,35 +199,36 @@ def grid_destrution_bot_frames(frame, sender):
 
     # survey site
     survey_site = ttk.Button(frame, text='Survey Site')
-    survey_site.grid(row=2, column=0)
+    survey_site.grid(row=1, column=1)
     survey_site["command"] = lambda: survey_the_site(sender)
 
     # tell people this looks easy
     status_report = ttk.Button(frame, text='Ask for status report')
-    status_report.grid(row=3, column=0)
+    status_report.grid(row=1, column=2)
     status_report["command"] = lambda: sender.send_message('speak_phrase',
                                                            ['This looks easy. It will be done in no time'])
 
     # follow line to get to site
     head_to_site = ttk.Button(frame, text='Have robot start the job')
-    head_to_site.grid(row=4, column=0)
+    head_to_site.grid(row=1, column=3)
     head_to_site["command"] = lambda: head_towards_site(sender)
-    speed_label = ttk.Label(frame,text='How fast should I do my work')
-    speed_label.grid(row=3,column=2)
-    speed = tkinter.Scale(frame,orient='horizontal')
-    speed.grid(row=4,column=2)
+    speed_label = ttk.Label(frame,text='How fast should I do my work?')
+    speed_label.grid(row=3,column=0)
+    speed = tkinter.Scale(frame,orient='horizontal',showvalue=0,)
+    speed.grid(row=3,column=1)
+    speed.set(50)
     # turn and knock down objects and yell destroy
     question_label = ttk.Label(frame, text='Are you ready for me to start?')
-    question_label.grid(row=5, column=0)
+    question_label.grid(row=2, column=3)
     answer = ttk.Entry(frame, width=5)
-    answer.grid(row=5, column=1)
+    answer.grid(row=3, column=3)
     question = ttk.Button(frame, text='Tell the robot')
-    question.grid(row=5, column=2)
-    question["command"] = lambda: start_destruction(sender, answer)
+    question.grid(row=4, column=3)
+    question["command"] = lambda: start_destruction(sender, answer,speed.get())
 
     # fire robot / run away
     quit_destruction_bot = ttk.Button(frame, text='Fire Robot')
-    quit_destruction_bot.grid(row=7, column=3)
+    quit_destruction_bot.grid(row=5, column=5)
     quit_destruction_bot["command"] = lambda: end_of_desruction_bot(sender)
 
 
@@ -245,10 +246,10 @@ def head_towards_site(sender):
     pass
 
 
-def start_destruction(sender, answer):
+def start_destruction(sender, answer,speed):
     answer = answer.get()
     if answer == 'yes':
-        pass
+        print('My speed is set to',speed)
     else:
         print('I will wait until you are ready')
         return
