@@ -64,7 +64,6 @@ def led_cycle():
 
 
 def spin_then_pickup(direction, speed, robot):
-    print('hewwo')
     if direction[1] == 'w':
         print('spinng clockwise at speed', speed)
         robot.drive_system.spin_clockwise_until_sees_object(int(speed), 500)
@@ -111,6 +110,7 @@ def start_destruction(answer, speed, robot):
 
     else:
         print('I will wait until you are ready')
+        robot.sound_system.speak_phrase('I will wait until you are ready')
 
 
 def survey_site(robot):
