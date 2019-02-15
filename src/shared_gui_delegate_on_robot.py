@@ -167,4 +167,5 @@ class DelegateThatReceives(object):
         jacob.start_destruction(answer, speed, self.robot)
 
     def m1_go_on_break(self):
+        self.speak_phrase('I will go on break now!')
         jacob.go_on_break(self.robot)
