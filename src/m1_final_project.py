@@ -123,9 +123,14 @@ def head_towards_site(robot):
 
 
 def run_away(robot):
-    pass
+    robot.drive_system.go_straight_for_inches_using_encoder(10,0-75)
+    robot.drive_system.go(0-75,75)
+    time.sleep(.5)
+    robot.drive_system.stop()
+    robot.drive_system.go_straight_for_inches_using_encoder(45,100)
+    robot.stop()
 
 def destroy(robot,speed):
     spin_then_pickup('cw', speed, robot)
-    robot.drive_system.go(0 - speed, 0 - speed)
+    robot.drive_system.go_straight_for_seconds(2, 0 - speed)
     robot.arm_and_claw.lower_arm()

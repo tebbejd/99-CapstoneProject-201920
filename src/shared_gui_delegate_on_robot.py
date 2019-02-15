@@ -164,5 +164,4 @@ class DelegateThatReceives(object):
         jacob.head_towards_site(self.robot)
 
     def m1_start_destruction(self,answer, speed):
-        answer = answer.get()
         jacob.start_destruction(answer,speed,self.robot)

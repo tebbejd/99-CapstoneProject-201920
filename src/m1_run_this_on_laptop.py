@@ -224,7 +224,7 @@ def grid_destrution_bot_frames(frame, sender):
     answer.grid(row=3, column=3)
     question = ttk.Button(frame, text='Tell the robot')
     question.grid(row=4, column=3)
-    question["command"] = lambda: sender.send_message('m1_start_destruction',[answer,speed.get()])
+    question["command"] = lambda: sender.send_message('m1_start_destruction',[answer.get(),speed.get()])
 
     # fire robot / run away
     quit_destruction_bot = ttk.Button(frame, text='Fire Robot')
