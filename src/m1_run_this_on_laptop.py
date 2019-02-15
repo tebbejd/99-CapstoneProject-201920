@@ -200,7 +200,7 @@ def grid_destrution_bot_frames(frame, sender):
     # survey site
     survey_site = ttk.Button(frame, text='Survey Site')
     survey_site.grid(row=1, column=1)
-    survey_site["command"] = lambda: survey_the_site(sender)
+    survey_site["command"] = lambda: sender.send_message('m1_survey_the_site')
 
     # tell people this looks easy
     status_report = ttk.Button(frame, text='Ask for status report')
@@ -208,10 +208,10 @@ def grid_destrution_bot_frames(frame, sender):
     status_report["command"] = lambda: sender.send_message('speak_phrase',
                                                            ['This looks easy. It will be done in no time'])
 
-    # follow line to get to site
+    # go back to the site
     head_to_site = ttk.Button(frame, text='Have robot start the job')
     head_to_site.grid(row=1, column=3)
-    head_to_site["command"] = lambda: head_towards_site(sender)
+    head_to_site["command"] = lambda: sender.send_message('m1_head_towards_site')
     speed_label = ttk.Label(frame,text='How fast should I do my work?')
     speed_label.grid(row=3,column=0)
     speed = tkinter.Scale(frame,orient='horizontal',showvalue=0,)
@@ -224,38 +224,36 @@ def grid_destrution_bot_frames(frame, sender):
     answer.grid(row=3, column=3)
     question = ttk.Button(frame, text='Tell the robot')
     question.grid(row=4, column=3)
-    question["command"] = lambda: start_destruction(sender, answer,speed.get())
+    question["command"] = lambda: sender.send_message('m1_start_destruction',[answer,speed.get()])
 
     # fire robot / run away
     quit_destruction_bot = ttk.Button(frame, text='Fire Robot')
     quit_destruction_bot.grid(row=5, column=5)
-    quit_destruction_bot["command"] = lambda: end_of_desruction_bot(sender)
+    quit_destruction_bot["command"] = lambda: sender.send_message('m1_end_of_desruction_bot')
 
 
-def end_of_desruction_bot(sender):
-    phrase = 'My time has come. I hope I was a good boy.'
-    run_away(sender)
-    sender.send_message('speak_phrase', [phrase])
 
 
-def survey_the_site(sender):
-    pass
 
 
-def head_towards_site(sender):
-    pass
 
 
-def start_destruction(sender, answer,speed):
-    answer = answer.get()
-    if answer == 'yes':
-        print('My speed is set to',speed)
-    else:
-        print('I will wait until you are ready')
-        return
 
-def run_away(sender):
-    pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # -----------------------------------------------------------------------------
