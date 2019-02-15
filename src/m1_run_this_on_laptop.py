@@ -188,7 +188,7 @@ def final_project_frame():
 
 
 def grid_destrution_bot_frames(frame, sender):
-    label = ttk.Label(frame, text='Destruction Bot',font=('Helvitica',16))
+    label = ttk.Label(frame, text='Destruction Bot', font=('Helvitica', 16))
     label.grid(row=0, column=2)
 
     # introduce yourself
@@ -208,19 +208,21 @@ def grid_destrution_bot_frames(frame, sender):
     status_report["command"] = lambda: sender.send_message('speak_phrase',
                                                            ['This looks easy. It will be done in no time'])
 
-    #go on break
-    go_on_break = ttk.Button(frame,text='Go on Break')
-    go_on_break.grid(row=5,column=0)
+    # go on break
+    go_on_break = ttk.Button(frame, text='Go on Break')
+    go_on_break.grid(row=1, column=5)
     go_on_break["command"] = sender.send_message('m1_go_on_break')
+
     # go back to the site
     head_to_site = ttk.Button(frame, text='Have robot start the job')
     head_to_site.grid(row=1, column=3)
     head_to_site["command"] = lambda: sender.send_message('m1_head_towards_site')
-    speed_label = ttk.Label(frame,text='How fast should I do my work?')
-    speed_label.grid(row=3,column=0)
-    speed = tkinter.Scale(frame,orient='horizontal',showvalue=0,)
-    speed.grid(row=3,column=1)
+    speed_label = ttk.Label(frame, text='How fast should I do my work?')
+    speed_label.grid(row=3, column=0)
+    speed = tkinter.Scale(frame, orient='horizontal', showvalue=0, )
+    speed.grid(row=3, column=1)
     speed.set(50)
+
     # turn and knock down objects and yell destroy
     question_label = ttk.Label(frame, text='Are you ready for me to start?')
     question_label.grid(row=2, column=3)
@@ -228,34 +230,12 @@ def grid_destrution_bot_frames(frame, sender):
     answer.grid(row=3, column=3)
     question = ttk.Button(frame, text='Tell the robot')
     question.grid(row=4, column=3)
-    question["command"] = lambda: sender.send_message('m1_start_destruction',[answer.get(),speed.get()])
+    question["command"] = lambda: sender.send_message('m1_start_destruction', [answer.get(), speed.get()])
 
     # fire robot / run away
     quit_destruction_bot = ttk.Button(frame, text='Fire Robot')
     quit_destruction_bot.grid(row=5, column=5)
     quit_destruction_bot["command"] = lambda: sender.send_message('m1_end_of_desruction_bot')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # -----------------------------------------------------------------------------
