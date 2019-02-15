@@ -106,15 +106,26 @@ def spin_to_center(robot, direction):
 def start_destruction(answer,speed,robot):
     if answer == 'yes':
         print('My speed is set to', speed)
+        destroy(robot,speed)
+
     else:
         print('I will wait until you are ready')
-        return
 
 def survey_site(robot):
-    pass
+    for k in range(3):
+        robot.drive_system.go_straight_until_intensity_is_less_than(10,50)
+        robot.drive_system.go_straight_until_intensity_is_greater_than(60,50)
+        spin_to_center(robot,'ccw')
 
 def head_towards_site(robot):
-    pass
+    spin_to_center(robot,'ccw')
+    robot.drive_system.go_straight_for_inches_using_encoder(24,50)
+
 
 def run_away(robot):
     pass
+
+def destroy(robot,speed):
+    spin_then_pickup('cw', speed, robot)
+    robot.drive_system.go(0 - speed, 0 - speed)
+    robot.arm_and_claw.lower_arm()
