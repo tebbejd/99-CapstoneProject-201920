@@ -208,6 +208,10 @@ def grid_destrution_bot_frames(frame, sender):
     status_report["command"] = lambda: sender.send_message('speak_phrase',
                                                            ['This looks easy. It will be done in no time'])
 
+    #go on break
+    go_on_break = ttk.Button(frame,text='Go on Break')
+    go_on_break.grid(row=5,column=0)
+    go_on_break["command"] = sender.send_message('m1_go_on_break')
     # go back to the site
     head_to_site = ttk.Button(frame, text='Have robot start the job')
     head_to_site.grid(row=1, column=3)

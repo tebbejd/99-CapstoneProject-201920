@@ -103,34 +103,69 @@ def spin_to_center(robot, direction):
             robot.drive_system.stop()
             break
 
-def start_destruction(answer,speed,robot):
+
+def start_destruction(answer, speed, robot):
     if answer == 'yes':
         print('My speed is set to', speed)
-        destroy(robot,speed)
+        destroy(robot, speed)
 
     else:
         print('I will wait until you are ready')
 
+
 def survey_site(robot):
     for k in range(3):
-        robot.drive_system.go_straight_until_intensity_is_less_than(10,50)
-        robot.drive_system.go_straight_until_intensity_is_greater_than(60,50)
-        spin_to_center(robot,'ccw')
+        robot.drive_system.go_straight_until_intensity_is_less_than(10, 50)
+        robot.drive_system.go_straight_until_intensity_is_greater_than(60, 50)
+        spin_to_center(robot, 'ccw')
+
 
 def head_towards_site(robot):
-    spin_to_center(robot,'ccw')
-    robot.drive_system.go_straight_for_inches_using_encoder(24,50)
+    spin_to_center(robot, 'ccw')
+    robot.drive_system.go_straight_for_inches_using_encoder(24, 50)
+
+
+def go_on_break(robot):
+    robot.sound_system.play_tone_sequence([
+        (392, 350, 100), (392, 350, 100), (392, 350, 100), (311.1, 250, 100),
+        (466.2, 25, 100), (392, 350, 100), (311.1, 250, 100), (466.2, 25, 100),
+        (392, 700, 100), (587.32, 350, 100), (587.32, 350, 100),
+        (587.32, 350, 100), (622.26, 250, 100), (466.2, 25, 100),
+        (369.99, 350, 100), (311.1, 250, 100), (466.2, 25, 100),
+        (392, 700, 100),
+        (784, 350, 100), (392, 250, 100), (392, 25, 100), (784, 350, 100),
+        (739.98, 250, 100), (698.46, 25, 100), (659.26, 25, 100),
+        (622.26, 25, 100), (659.26, 50, 400), (415.3, 25, 200),
+        (554.36, 350, 100),
+        (523.25, 250, 100), (493.88, 25, 100), (466.16, 25, 100),
+        (440, 25, 100),
+        (466.16, 50, 400), (311.13, 25, 200), (369.99, 350, 100),
+        (311.13, 250, 100), (392, 25, 100), (466.16, 350, 100),
+        (392, 250, 100),
+        (466.16, 25, 100), (587.32, 700, 100), (784, 350, 100),
+        (392, 250, 100),
+        (392, 25, 100), (784, 350, 100), (739.98, 250, 100),
+        (698.46, 25, 100),
+        (659.26, 25, 100), (622.26, 25, 100), (659.26, 50, 400),
+        (415.3, 25, 200),
+        (554.36, 350, 100), (523.25, 250, 100), (493.88, 25, 100),
+        (466.16, 25, 100), (440, 25, 100), (466.16, 50, 400),
+        (311.13, 25, 200),
+        (392, 350, 100), (311.13, 250, 100), (466.16, 25, 100),
+        (392.00, 300, 150), (311.13, 250, 100), (466.16, 25, 100), (392, 700)
+    ]).wait()
 
 
 def run_away(robot):
-    robot.drive_system.go_straight_for_inches_using_encoder(10,0-75)
-    robot.drive_system.go(0-75,75)
+    robot.drive_system.go_straight_for_inches_using_encoder(10, 0 - 75)
+    robot.drive_system.go(0 - 75, 75)
     time.sleep(.5)
     robot.drive_system.stop()
-    robot.drive_system.go_straight_for_inches_using_encoder(45,100)
+    robot.drive_system.go_straight_for_inches_using_encoder(45, 100)
     robot.stop()
 
-def destroy(robot,speed):
+
+def destroy(robot, speed):
     spin_then_pickup('cw', speed, robot)
     robot.drive_system.go_straight_for_seconds(2, 0 - speed)
     robot.arm_and_claw.lower_arm()

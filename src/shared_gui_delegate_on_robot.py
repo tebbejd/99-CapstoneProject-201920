@@ -165,3 +165,6 @@ class DelegateThatReceives(object):
 
     def m1_start_destruction(self,answer, speed):
         jacob.start_destruction(answer,speed,self.robot)
+
+    def m1_go_on_break(self):
+        jacob.go_on_break(self.robot)
