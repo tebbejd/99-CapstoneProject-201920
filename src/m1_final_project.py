@@ -116,5 +116,5 @@ def survey_site(robot):
 def head_towards_site(robot):
     pass
 
-def run_away(robot:
+def run_away(robot):
     pass
