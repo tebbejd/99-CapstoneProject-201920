@@ -188,4 +188,3 @@ class DelegateThatReceives(object):
         print('name')
         string = "Wow" + name + "you are such a simple turtle"
         brandon.make_fun(self.robot, string)
-        
