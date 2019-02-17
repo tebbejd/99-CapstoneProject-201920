@@ -103,12 +103,35 @@ def get_control_frame(window, sender):
     floor_dinner["command"] = lambda: dinner_func(sender, var1, var2, var3)
 
     #Action 4 Dump beer (Inspection)
-
+    inspect = ttk.Button(frame, text="Inspect Room")
+    inspect_label = ttk.Label(frame, text="Inspect the freshman's room")
+    inspect_label.grid(row=6, column=2)
+    inspect.grid(row=6, column=0)
+    inspect["command"] = lambda: inspect_func(sender)
 
     #Action 5 Make fun of kids
+    make_fun = ttk.Button(frame, text="Joke with residence")
+    make_fun_label = ttk.Label(frame, text="Inspect the freshman's room")
+    make_fun_label.grid(row=8, column=2)
+    make_fun.grid(row=8, column=0)
 
+    name = ttk.Entry(frame, width=8)
+    name.grid(row=8, column=1)
+    name_label = ttk.Label(frame, text="Insert Name")
+    name_label.grid(row=7, column=1)
+
+    make_fun["command"] = lambda: make_fun_func(sender, name)
 
     return frame
+
+def make_fun_func(sender, name):
+    name = name.get()
+    print(name)
+    sender.send_message("m2_make_fun", [name])
+
+def inspect_func(sender):
+    print('Inspecting room')
+    sender.send_message("m2_inspect", [])
 
 def dinner_func(sender, loc1, loc2, loc3):
     loc1 = int(loc1.get())
@@ -180,7 +203,7 @@ def frame1_2():
     # -------------------------------------------------------------------------
     # Frames that are particular to my individual contributions to the project.
     # -------------------------------------------------------------------------
-    # TODO: Implement and call get_my_frames(...)
+    # DONE: Implement and call get_my_frames(...)
     tone_frame = get_tone_frame(main_frame, mqtt_sender)
     spin_frame = get_spin_frame(main_frame, mqtt_sender)
     # -------------------------------------------------------------------------
