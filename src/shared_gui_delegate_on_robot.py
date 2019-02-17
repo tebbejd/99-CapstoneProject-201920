@@ -168,3 +168,24 @@ class DelegateThatReceives(object):
     def m1_go_on_break(self):
         self.speak_phrase('I will go on break now!')
         jacob.go_on_break(self.robot)
+
+    def m2_quiet_hours(self, name):
+        brandon.quiet_hours(self.robot, name)
+
+    def m2_rounds(self, speed):
+        print("rounds at", speed)
+        brandon.rounds(self.robot, speed)
+
+    def m2_floor_dinner(self, n):
+        string = "Floor dinner at" + n
+        brandon.floor_dinner(self.robot, string)
+
+    def m2_inspect(self):
+        print("Inspection in progress")
+        brandon.inspect(self.robot)
+
+    def m2_make_fun(self, name):
+        print('name')
+        string = "Wow" + name + "you are such a simple turtle"
+        brandon.make_fun(self.robot, string)
+        
