@@ -151,7 +151,7 @@ def sprint_1_and_2_frames():
     # -------------------------------------------------------------------------
     # Sub-frames for the shared GUI that the team developed:
     # -------------------------------------------------------------------------
-    teleop_frame, arm_frame, control_frame = get_shared_frames(frame, sender)
+    teleop_frame, control_frame = get_shared_frames(frame, sender)
 
     # -------------------------------------------------------------------------
     # Frames that are particular to my individual contributions to the project.
@@ -164,7 +164,7 @@ def sprint_1_and_2_frames():
     # -------------------------------------------------------------------------
     # Grid the frames.
     # -------------------------------------------------------------------------
-    grid_frames(teleop_frame, arm_frame, control_frame)
+    grid_frames(teleop_frame, teleop_frame, control_frame)
     pickup_object_using_proximity_sensor(frame, sender).grid(row=3, column=0)
     spin_pickup_object(frame, sender).grid(row=3, column=1)
 
