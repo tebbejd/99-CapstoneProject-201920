@@ -153,19 +153,24 @@ class DelegateThatReceives(object):
         brandon.spin_pickup_counterclockwise(float(frequency), int(speed), float(rate), self.robot)
 
     def m1_end_of_desruction_bot(self):
+        print('speak My time has come. I hope I was a good boy.')
         self.speak_phrase('My time has come. I hope I was a good boy.')
         jacob.run_away(self.robot)
 
     def m1_survey_the_site(self):
+        print('survey site')
         jacob.survey_site(self.robot)
 
     def m1_head_towards_site(self):
+        print('head towards site')
         jacob.head_towards_site(self.robot)
 
     def m1_start_destruction(self, answer, speed):
+        print('start if',answer,'is yes at speed',speed)
         jacob.start_destruction(answer, speed, self.robot)
 
     def m1_go_on_break(self):
+        print('I will go on break now!')
         self.speak_phrase('I will go on break now!')
         jacob.go_on_break(self.robot)
 
