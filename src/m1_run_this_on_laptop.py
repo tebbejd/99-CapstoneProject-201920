@@ -210,7 +210,7 @@ def grid_destrution_bot_frames(frame, sender):
     # go on break
     go_on_break = ttk.Button(frame, text='Go on Break')
     go_on_break.grid(row=1, column=5)
-    go_on_break["command"] = sender.send_message('m1_go_on_break')
+    go_on_break["command"] = break_time(sender)
 
     # go back to the site
     head_to_site = ttk.Button(frame, text='Have robot start the job')
@@ -241,7 +241,9 @@ def grid_destrution_bot_frames(frame, sender):
     control_frame.grid(row=2,column=6)
 
 
-
+def break_time(sender):
+    print('Break Time')
+    sender.send_message('m1_go_on_break')
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # -----------------------------------------------------------------------------
