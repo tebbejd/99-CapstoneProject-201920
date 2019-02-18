@@ -244,6 +244,7 @@ def grid_destrution_bot_frames(frame, sender):
 def break_time(sender):
     print('Break Time')
     sender.send_message('m1_go_on_break')
+    print('I was on break')
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # -----------------------------------------------------------------------------
