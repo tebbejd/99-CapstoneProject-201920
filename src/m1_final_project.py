@@ -110,7 +110,7 @@ def start_destruction(answer, speed, robot):
 
     else:
         print('I will wait until you are ready')
-        robot.sound_system.speak_phrase('I will wait until you are ready')
+        robot.sound_system.speech_maker.speak_phrase('I will wait until you are ready')
 
 
 def survey_site(robot):
