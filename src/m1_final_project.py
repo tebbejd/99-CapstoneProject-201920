@@ -110,12 +110,14 @@ def start_destruction(answer, speed, robot):
 
     else:
         print('I will wait until you are ready')
-        robot.sound_system.speech_maker.speak_phrase('I will wait until you are ready')
+        robot.sound_system.speech_maker.speak('I will wait until you are ready')
 
 
 def survey_site(robot):
+    robot.drive_system.go_straight_until_intensity_is_less_than(10, 50)
+    robot.drive_system.go_straight_until_intensity_is_greater_than(60, 50)
+    spin_to_center(robot, 'ccw')
     for k in range(3):
-        robot.drive_system.go_straight_until_intensity_is_less_than(10, 50)
         robot.drive_system.go_straight_until_intensity_is_greater_than(60, 50)
         spin_to_center(robot, 'ccw')
 
