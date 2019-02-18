@@ -154,7 +154,7 @@ class DelegateThatReceives(object):
 
     def m1_end_of_desruction_bot(self):
         print('speak My time has come. I hope I was a good boy.')
-        self.speak_phrase('My time has come. I hope I was a good boy.')
+        self.robot.sound_system.speak_phrase('My time has come. I hope I was a good boy.')
         jacob.run_away(self.robot)
 
     def m1_survey_the_site(self):
@@ -171,7 +171,7 @@ class DelegateThatReceives(object):
 
     def m1_go_on_break(self):
         print('I will go on break now!')
-        self.speak_phrase('I will go on break now!')
+        self.robot.sound_system.speak_phrase('I will go on break now!')
         jacob.go_on_break(self.robot)
 
     def m2_quiet_hours(self, name):
