@@ -82,7 +82,7 @@ def get_control_frame(window, sender):
     rounds_label = ttk.Label(frame, text="RA Bot needs to go on rounds")
     rounds_label.grid(row=2, column=2)
     rounds.grid(row=2, column=0)
-    rounds_speed = ttk.Scale(frame, from_=30, to=100)
+    rounds_speed = ttk.Scale(frame, from_=0, to=100)
     rounds_speed.grid(row=2, column=1)
     rounds_speed_label = ttk.Label(frame, text="How Tired is RA Bot from awake to passed out")
     rounds_speed_label.grid(row=1, column=1)
