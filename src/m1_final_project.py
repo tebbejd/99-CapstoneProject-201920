@@ -96,8 +96,9 @@ def spin_to_center(robot, direction):
             robot.drive_system.go(25, 0 - 25)
         else:
             robot.drive_system.go(0 - 25, 25)
-        b = robot.sensor_system.camera.get_biggest_blob().get_area()
-        if b <= 60 and b >= 50:
+        b = robot.sensor_system.camera.get_biggest_blob()
+        print(b.center.x)
+        if b.center.x <= 165 and b.center.x >= 155:
             robot.drive_system.stop()
             break
 
@@ -115,7 +116,7 @@ def start_destruction(answer, speed, robot):
 def survey_site(robot):
     robot.drive_system.go_straight_until_intensity_is_less_than(10, 50)
     robot.drive_system.go_straight_until_intensity_is_greater_than(60, 50)
-    spin_to_center(robot, 'ccw')
+    spin_to_object(robot, 'ccw')
     for k in range(3):
         robot.drive_system.go_straight_until_intensity_is_greater_than(60, 50)
         spin_to_center(robot, 'ccw')
@@ -171,3 +172,14 @@ def destroy(robot, speed):
     spin_then_pickup('cw', speed, robot)
     robot.drive_system.go_straight_for_seconds(2, 0 - speed)
     robot.arm_and_claw.lower_arm()
+
+def spin_to_object(robot, direction):
+    while True:
+        if direction[1] == 'w':
+            robot.drive_system.go(25, 0 - 25)
+        else:
+            robot.drive_system.go(0 - 25, 25)
+        b = robot.sensor_system.camera.get_biggest_blob().get_area()
+        if b <= 60 and b >= 50:
+            robot.drive_system.stop()
+            break
