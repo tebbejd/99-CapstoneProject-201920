@@ -126,7 +126,7 @@ def head_towards_site(robot):
 
 
 def go_on_break(robot):
-    robot.sound_system.play_tone_sequence([
+    robot.sound_system.tone_maker.play_tone_sequence([
         (392, 350, 100), (392, 350, 100), (392, 350, 100), (311.1, 250, 100),
         (466.2, 25, 100), (392, 350, 100), (311.1, 250, 100), (466.2, 25, 100),
         (392, 700, 100), (587.32, 350, 100), (587.32, 350, 100),
