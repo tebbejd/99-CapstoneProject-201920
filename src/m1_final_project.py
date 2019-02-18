@@ -122,7 +122,7 @@ def survey_site(robot):
 
 def head_towards_site(robot):
     spin_to_center(robot, 'ccw')
-    robot.drive_system.go_straight_for_inches_using_encoder(24, 50)
+    robot.drive_system.go_straight_for_inches_using_encoder(12, 50)
 
 
 def go_on_break(robot):
