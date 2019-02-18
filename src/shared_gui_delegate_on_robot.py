@@ -169,7 +169,7 @@ class DelegateThatReceives(object):
         print('start if',answer,'is yes at speed',speed)
         jacob.start_destruction(answer, speed, self.robot)
 
-    def m1_go_on_break(self):
+    def m1_break_time(self):
         print('I will go on break now!')
         self.robot.sound_system.speak_phrase('I will go on break now!')
         jacob.go_on_break(self.robot)
