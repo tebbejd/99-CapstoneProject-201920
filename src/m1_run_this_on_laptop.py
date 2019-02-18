@@ -20,16 +20,15 @@ def main():
 
 def get_shared_frames(main_frame, mqtt_sender):
     teleop_frame = shared_gui.get_teleoperation_frame(main_frame, mqtt_sender)
-    arm_frame = shared_gui.get_arm_frame(main_frame, mqtt_sender)
     control_frame = shared_gui.get_control_frame(main_frame, mqtt_sender)
 
-    return teleop_frame, arm_frame, control_frame
+    return teleop_frame, control_frame
 
 
 def grid_frames(teleop_frame, arm_frame, control_frame):
-    teleop_frame.grid(row=0, column=0)
-    arm_frame.grid(row=1, column=0)
-    control_frame.grid(row=2, column=0)
+    teleop_frame.grid(row=6, column=0)
+    arm_frame.grid(row=7, column=0)
+    control_frame.grid(row=8, column=0)
 
 
 def get_my_frames(frame, sender):
@@ -236,6 +235,11 @@ def grid_destrution_bot_frames(frame, sender):
     quit_destruction_bot = ttk.Button(frame, text='Fire Robot')
     quit_destruction_bot.grid(row=5, column=5)
     quit_destruction_bot["command"] = lambda: sender.send_message('m1_end_of_desruction_bot')
+
+    teleop_frame, control_frame = get_shared_frames(frame, sender)
+    teleop_frame.grid(row=1,column=6)
+    control_frame.grid(row=2,column=6)
+
 
 
 # -----------------------------------------------------------------------------
