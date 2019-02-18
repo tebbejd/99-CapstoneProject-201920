@@ -171,7 +171,7 @@ class DelegateThatReceives(object):
 
     def m1_break_time(self):
         print('I will go on break now!')
-        self.robot.sound_system.speech_maker.speak('I will go on break now!')
+        self.robot.sound_system.speech_maker.speak('I will go on break now!').wait()
         jacob.go_on_break(self.robot)
 
     def m2_quiet_hours(self, name):

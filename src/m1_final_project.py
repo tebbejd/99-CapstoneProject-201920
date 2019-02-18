@@ -161,10 +161,10 @@ def go_on_break(robot):
 def run_away(robot):
     robot.drive_system.go_straight_for_inches_using_encoder(10, 0 - 75)
     robot.drive_system.go(0 - 75, 75)
-    time.sleep(.5)
+    time.sleep(1)
     robot.drive_system.stop()
     robot.drive_system.go_straight_for_inches_using_encoder(45, 100)
-    robot.stop()
+    robot.drive_system.stop()
 
 
 def destroy(robot, speed):
