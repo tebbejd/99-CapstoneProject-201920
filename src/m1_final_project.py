@@ -96,9 +96,8 @@ def spin_to_center(robot, direction):
             robot.drive_system.go(25, 0 - 25)
         else:
             robot.drive_system.go(0 - 25, 25)
-        b = robot.sensor_system.camera.get_biggest_blob()
-        print(b.center.x)
-        if b.center.x <= 165 and b.center.x >= 155:
+        b = robot.sensor_system.camera.get_biggest_blob().get_area()
+        if b <= 60 and b >= 50:
             robot.drive_system.stop()
             break
 
