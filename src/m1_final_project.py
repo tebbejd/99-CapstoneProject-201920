@@ -159,6 +159,7 @@ def go_on_break(robot):
 
 
 def run_away(robot):
+    time.sleep(3)
     robot.drive_system.go_straight_for_inches_using_encoder(10, 0 - 75)
     robot.drive_system.go(0 - 75, 75)
     time.sleep(1)
