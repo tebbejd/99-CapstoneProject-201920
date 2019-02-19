@@ -154,7 +154,7 @@ class DelegateThatReceives(object):
 
     def m1_end_of_desruction_bot(self):
         print('speak My time has come. I hope I was a good boy.')
-        self.robot.sound_system.speech_maker.speak('My time has come. I hope I was a good boy.')
+        self.robot.sound_system.speech_maker.speak('My time has come. I hope I was a good boy.').wait()
         jacob.run_away(self.robot)
 
     def m1_survey_the_site(self):
@@ -166,7 +166,7 @@ class DelegateThatReceives(object):
         jacob.head_towards_site(self.robot)
 
     def m1_start_destruction(self, answer, speed):
-        print('start if',answer,'is yes at speed',speed)
+        print('start if', answer, 'is yes at speed', speed)
         jacob.start_destruction(answer, speed, self.robot)
 
     def m1_break_time(self):

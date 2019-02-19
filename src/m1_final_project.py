@@ -122,7 +122,6 @@ def survey_site(robot):
         spin_to_object(robot, 'ccw')
 
 
-
 def head_towards_site(robot):
     spin_to_center(robot, 'ccw')
     robot.drive_system.go_straight_for_inches_using_encoder(6, 50)
@@ -160,7 +159,7 @@ def go_on_break(robot):
 
 
 def run_away(robot):
-    time.sleep(3)
+    time.sleep(4)
     robot.drive_system.go_straight_for_inches_using_encoder(10, 0 - 75)
     robot.drive_system.go(0 - 75, 75)
     time.sleep(.5)
@@ -173,6 +172,7 @@ def destroy(robot, speed):
     spin_then_pickup('cw', speed, robot)
     robot.drive_system.go_straight_for_seconds(2, 0 - speed)
     robot.arm_and_claw.lower_arm()
+
 
 def spin_to_object(robot, direction):
     while True:

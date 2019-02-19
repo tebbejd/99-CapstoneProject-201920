@@ -237,12 +237,10 @@ def grid_destrution_bot_frames(frame, sender):
     quit_destruction_bot["command"] = lambda: sender.send_message('m1_end_of_desruction_bot')
 
     teleop_frame, control_frame = get_shared_frames(frame, sender)
-    teleop_frame.grid(row=1,column=6)
-    control_frame.grid(row=2,column=6)
+    teleop_frame.grid(row=1, column=6)
+    control_frame.grid(row=2, column=6)
 
 
-def break_time(sender):
-    print('Break Time')
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # -----------------------------------------------------------------------------
