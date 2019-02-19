@@ -179,16 +179,17 @@ def final_project_frame():
     sender.connect_to_ev3()
     root = tkinter.Tk()
     root.title('Capstone Project Winter 2019')
-    frame = ttk.Frame(root, padding=10, borderwidth=5, relief='groove')
-    frame.grid()
-    grid_destrution_bot_frames(frame, sender)
+
+    grid_destrution_bot_frames(root, sender)
 
     root.mainloop()
 
 
-def grid_destrution_bot_frames(frame, sender):
+def grid_destrution_bot_frames(root, sender):
+    frame = ttk.Frame(root, padding=10, borderwidth=5, relief='groove')
+    frame.grid()
     label = ttk.Label(frame, text='Destruction Bot', font=('Helvitica', 16))
-    label.grid(row=0, column=3)
+    label.grid(row=0, column=2)
 
     # introduce yourself
     introduction = ttk.Button(frame, text='Introduction')
@@ -226,6 +227,7 @@ def grid_destrution_bot_frames(frame, sender):
     question_label = ttk.Label(frame, text='Are you ready for me to start?')
     question_label.grid(row=2, column=3)
     answer = ttk.Entry(frame, width=5)
+    answer.insert(0, 'no')
     answer.grid(row=3, column=3)
     question = ttk.Button(frame, text='Tell the robot')
     question.grid(row=4, column=3)
@@ -235,10 +237,11 @@ def grid_destrution_bot_frames(frame, sender):
     quit_destruction_bot = ttk.Button(frame, text='Fire Robot')
     quit_destruction_bot.grid(row=5, column=6)
     quit_destruction_bot["command"] = lambda: sender.send_message('m1_end_of_destruction_bot')
-
-    teleop_frame, control_frame = get_shared_frames(frame, sender)
-    teleop_frame.grid(row=1, column=7)
-    control_frame.grid(row=2, column=7)
+    frame1 = ttk.Frame(root)
+    frame1.grid()
+    teleop_frame, control_frame = get_shared_frames(frame1, sender)
+    teleop_frame.grid(row=0, column=0)
+    control_frame.grid(row=1, column=0)
 
 
 # -----------------------------------------------------------------------------
