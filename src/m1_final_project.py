@@ -124,7 +124,7 @@ def survey_site(robot):
 
 def head_towards_site(robot):
     spin_to_center(robot, 'ccw')
-    robot.drive_system.go_straight_for_inches_using_encoder(6, 50)
+    robot.drive_system.go_straight_for_inches_using_encoder(4, 50)
 
 
 def go_on_break(robot):
@@ -164,7 +164,7 @@ def run_away(robot):
     robot.drive_system.go(0 - 75, 75)
     time.sleep(.5)
     robot.drive_system.stop()
-    robot.drive_system.go_straight_for_inches_using_encoder(45, 100)
+    robot.drive_system.go_straight_for_inches_using_encoder(40, 100)
     robot.drive_system.stop()
 
 
@@ -182,6 +182,6 @@ def spin_to_object(robot, direction):
             robot.drive_system.go(0 - 25, 25)
         b = robot.sensor_system.camera.get_biggest_blob()
         print(b)
-        if b.center.x <= 135 and b.center.x >= 95:
+        if b.center.x <= 170 and b.center.x >= 95:
             robot.drive_system.stop()
             break
