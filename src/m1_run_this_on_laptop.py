@@ -193,7 +193,7 @@ def grid_destrution_bot_frames(frame, sender):
     # introduce yourself
     introduction = ttk.Button(frame, text='Introduction')
     introduction.grid(row=1, column=0)
-    phrase = 'Bob the Builder. Can he fix it? We shall see'
+    phrase = 'My name is Richard and I am pleased to help you with your building needs!'
     introduction["command"] = lambda: sender.send_message('speak_phrase', [phrase])
 
     # survey site
@@ -210,7 +210,7 @@ def grid_destrution_bot_frames(frame, sender):
     # go on break
     go_on_break = ttk.Button(frame, text='Go on Break')
     go_on_break.grid(row=1, column=5)
-    go_on_break["command"] = lambda: break_time(sender)
+    go_on_break["command"] = lambda: sender.send_message('m1_break_time')
 
     # go back to the site
     head_to_site = ttk.Button(frame, text='Have robot start the job')
@@ -234,7 +234,7 @@ def grid_destrution_bot_frames(frame, sender):
     # fire robot / run away
     quit_destruction_bot = ttk.Button(frame, text='Fire Robot')
     quit_destruction_bot.grid(row=5, column=5)
-    quit_destruction_bot["command"] = lambda: sender.send_message('m1_end_of_desruction_bot')
+    quit_destruction_bot["command"] = lambda: sender.send_message('m1_end_of_destruction_bot')
 
     teleop_frame, control_frame = get_shared_frames(frame, sender)
     teleop_frame.grid(row=1, column=6)

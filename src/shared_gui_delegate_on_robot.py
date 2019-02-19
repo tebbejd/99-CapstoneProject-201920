@@ -152,7 +152,7 @@ class DelegateThatReceives(object):
     def brandon_spin_pickup_counterclockwise(self, frequency, speed, rate):
         brandon.spin_pickup_counterclockwise(float(frequency), int(speed), float(rate), self.robot)
 
-    def m1_end_of_desruction_bot(self):
+    def m1_end_of_destruction_bot(self):
         print('speak My time has come. I hope I was a good boy.')
         self.robot.sound_system.speech_maker.speak('My time has come. I hope I was a good boy.').wait()
         jacob.run_away(self.robot)
