@@ -188,7 +188,7 @@ def final_project_frame():
 
 def grid_destrution_bot_frames(frame, sender):
     label = ttk.Label(frame, text='Destruction Bot', font=('Helvitica', 16))
-    label.grid(row=0, column=2)
+    label.grid(row=0, column=3)
 
     # introduce yourself
     introduction = ttk.Button(frame, text='Introduction')
@@ -233,12 +233,12 @@ def grid_destrution_bot_frames(frame, sender):
 
     # fire robot / run away
     quit_destruction_bot = ttk.Button(frame, text='Fire Robot')
-    quit_destruction_bot.grid(row=5, column=5)
+    quit_destruction_bot.grid(row=5, column=6)
     quit_destruction_bot["command"] = lambda: sender.send_message('m1_end_of_destruction_bot')
 
     teleop_frame, control_frame = get_shared_frames(frame, sender)
-    teleop_frame.grid(row=1, column=6)
-    control_frame.grid(row=2, column=6)
+    teleop_frame.grid(row=1, column=7)
+    control_frame.grid(row=2, column=7)
 
 
 # -----------------------------------------------------------------------------
