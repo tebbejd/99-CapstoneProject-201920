@@ -81,7 +81,7 @@ def rounds(robot, speed):
 
 def floor_dinner(robot, string):
     print("floor dinner start")
-    robot.drive_system.go(50, 50)
+    robot.drive_system.go(30, 30)
     for k in range(3):
         print(k)
         if robot.sensor_system.ir_proximity_sensor.get_distance_in_inches() < 3:
@@ -108,7 +108,7 @@ def inspect(robot):
     robot.drive_system.go(50, 50)
     time2 = time.time()
     while True:
-        if robot.sensor_system.ir_proximity_sensor.get_distance_in_inches() < 2:
+        if robot.sensor_system.ir_proximity_sensor.get_distance_in_inches() < 1:
             break
         print(robot.sensor_system.ir_proximity_sensor.get_distance_in_inches())
     robot.drive_system.stop()
